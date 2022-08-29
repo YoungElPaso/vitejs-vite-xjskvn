@@ -96,6 +96,8 @@ export class DrawerElement extends LitElement {
 
   // TODO: finish internal logic, including button. Desktop layout CSS. Mobile template/conditional logic.
 
+  // TODO: document this; maybe do adoption from mds-utilities-css component?
+  // TODO: clean it all up; add to main repo - make sure active etc is in place. Maybe even include Portal WC?
   connectedCallback() {
     let s = this.shadowRoot;
 
