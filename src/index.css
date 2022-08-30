@@ -65,3 +65,31 @@ button:active,
 button:focus {
   background: white;
 }
+
+mds-drawer:defined {
+  /* background: green; */
+  /* opacity: 1; */
+  /* TODO: not clear where to divide up these CSS rules...kinda don't want to split concerns across many files but maybe if there's some 'transition' classes or other such 'states' and animations in an external file thats ok? */
+  /* transition: all 0.3s ease-in-out; */
+  animation-name: fade-in;
+  animation-duration: 0.3s;
+}
+
+/* TODO: should probably handle the slide-in animation same way here... then can adopt it in components that load this stylesheet. */
+/* TODO: gotta run get kids @ 211. Take lunch on MM. */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+mds-drawer:not(:defined) {
+  margin-left: -1000px;
+  /* Not defined, so by definition not visible...need to do animations not transition here! */
+  /* opacity: 0; */
+  /* transition: opacity 8s ease-in; */
+  /* background: red; */
+}

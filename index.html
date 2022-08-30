@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + Lit</title>
     <link rel="stylesheet" href="./src/index.css" />
-    <script type="module" src="/src/my-element.js"></script>
     <script type="module" src="/src/drawer.ts"></script>
     <script type="module" src="/src/mobile-adapted-content.ts"></script>
+    <!-- <script type="module" src="/src/my-element.js"></script> -->
   </head>
   <body>
     <!-- TODO: flesh this out as utilities css sharer. -->
     <mds-utilities-css-></mds-utilities-css->
     <mds-mobile-adapted-content>
       <h1 slot="mobile-only">This is visible on mobile</h1>
-      <h2>This is visible only on desktop</h2>
+      <!-- <h2>This is visible only on desktop</h2> -->
     </mds-mobile-adapted-content>
     <div id="container">
       <!-- TODO: in theory, should wrap this in some mobile checking logic component? Might be useful? Or render a regular content slot on desktop but dump into a Drawer only on mobile? Kinda makes sense to me! <mds-mobile-adapted-content/>? -->
@@ -28,7 +28,7 @@
           sectionTitle="Hello World"
           animationStyle="fade"
         >
-          Some menu in drawer.
+          Some menu in drawerzzzzzzzzzzzzzzzzzzz.
         </mds-drawer>
         Some menu not in drawer. Or could be anything else!
       </mds-mobile-adapted-content>

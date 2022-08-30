@@ -1,7 +1,8 @@
 import { adoptStyles, unsafeCSS } from 'lit';
 import { LitElement, html, property, customElement, css } from 'lit-element';
 
-import mainstyles from './index.css?inline';
+// Get styles from css-importer.
+import mainstyles from './css-importer';
 
 import styles from './test.module.css?inline' assert { type: 'css' };
 
@@ -98,20 +99,19 @@ export class DrawerElement extends LitElement {
 
   // TODO: document this; maybe do adoption from mds-utilities-css component?
   // TODO: clean it all up; add to main repo - make sure active etc is in place. Maybe even include Portal WC?
-  connectedCallback() {
-    let s = this.shadowRoot;
-
-    // Add common styles from a loaded CSS file; adopt as constructed stylesheet.
-    if (s) {
-      let css = unsafeCSS(mainstyles);
-      adoptStyles(s, [css]);
-    }
-  }
+  // connectedCallback() {
+  //   super.connectedCallback();
+  //   let s = this.shadowRoot;
+  //   // // Add common styles from a loaded CSS file; adopt as constructed stylesheet.
+  //   // TODO: retry later; this almost works!
+  //   if (s) {
+  //     adoptStyles(s, [css`${DrawerElement.styles}`]);
+  //   }
+  // }
 
   // TODO: props and props validation working! Now to test that a bit more and return to the outright styling and so forth!
   static get styles() {
     // TODO: this left/right needs to be dynamic based on side prop and animation style - tho fade doesn't make any sense really in this case so can remove that as well.
-
     // console.log(unsafeCSS(classes));
     return [
       css`
@@ -124,6 +124,7 @@ export class DrawerElement extends LitElement {
         height: calc(100vh - 1rem);
         transition: margin 0.2s;
         padding: 0.5rem;
+        // overflow: hidden;
       }
       :host([openStatus]) {
         margin-left: 0;
@@ -136,6 +137,7 @@ export class DrawerElement extends LitElement {
         // color: white;
       }
     `,
+      mainstyles,
       // TODO: is this the equivalent of using adoptStyles? Cause if so, what's the point??? Perf? Maybe it's more standard? I guess that's likely the case. Seems the main use for it for now tho, until https://web.dev/css-module-scripts/ lands is to create a 'provider' component that allows others to adoptStyles from(?)
       // unsafeCSS(mainstyles),
     ];
