@@ -79,7 +79,7 @@ mds-drawer:defined {
   /* TOOD: need to figure out how to do drawer behaviour in CSS animations - switch directions etc...Want to use as little JS as possible. Might need to add another class/attribute to handle state change and so CSS - i.e. reflect prop to attribute so it's actually 'true' or 'false': Resume later. Checking out for now. */
 }
 
-/* TODO: flesh out initialized styles. */
+/* TODO: flesh out initialized styles. See related Codepen.*/
 mds-drawer[initialized] {
   border: 10px lime solid;
 }
@@ -93,6 +93,12 @@ mds-drawer[initialized] {
     opacity: 1;
   }
 }
+
+/* TODO: probably re-work animations as specific to Drawer and put the animation definitions in the CSS for the Component? No need to generalize them at the moment really - Just need to have the fade-in animation here for all components as they go from undefined to defined - maybe initial width/margin-left for Drawer too but dunno about that - should use preload maybe to block rendering of component till CSS is loaded anyway? */
+
+/* TODO: rename and re-purpose this file or a similar one to 'shared-component-css' or something similar - should *only* contain CSS for components in general and Drawer etc in specific. */
+
+/* TODO: add an set of keyframes for active facets etc and use that to simply extend regular <details> tag with animation on opening - i.e. animate height - calculate that I guess? */
 
 /* Basic slide-in-from-left animation. */
 @keyframes slide-from-left {
