@@ -10,7 +10,7 @@ import styles from './test.module.css?inline' assert { type: 'css' };
 import { z } from 'zod';
 
 // Bummer! Not the modules I wanted....TODO: continue to look into this later! Want the un-hashed version! TODO: check the Google article about importing css as module style - not the npm CSS MOdules.
-console.log(styles);
+// console.log(styles);
 
 // TODO: try this??? https://lit.dev/docs/api/styles/#adoptStyles
 
@@ -25,6 +25,11 @@ const DrawerProps = z.object({
 
   // A title for the entire section, optional.
   sectionTitle: z.string().optional(),
+
+  // TODO: Should we have width as a percentage? Probably not. Let's just settle on 75%.
+
+  // TODO: need an internal property called 'initalized' or something that should disappear on first render or connectedCallback or first interaction or if visible. Required to handle loading state. Could also remove via any click as well since that's an indication of interaction.
+  initialized: z.boolean().default(false),
 });
 
 // Convert schema to a type.
@@ -44,6 +49,9 @@ export class DrawerElement extends LitElement {
 
   @property({ type: String }) sectionTitle: DrawerTypes['sectionTitle'];
 
+  @property({ type: Boolean, reflect: true })
+  initialized: DrawerTypes['initialized'] = false;
+
   // Validate props using zod safeParse - won't automatically throw an error if a prop is wrong - so we can output a warning to console.
   validateProps() {
     // TODO: gotta be a way to avoid this properties repetition everywhere...probably just use static properties.
@@ -51,6 +59,7 @@ export class DrawerElement extends LitElement {
       open: this.openStatus,
       side: this.side,
       sectionTitle: this.sectionTitle,
+      initialized: this.initialized,
     });
     if (!validationResult.success) {
       console.warn('props not set correctly!', validationResult.error);
@@ -60,6 +69,8 @@ export class DrawerElement extends LitElement {
   }
 
   handleClick() {
+    // Technically this could happen here, or only once at another time - just need to turn the initialized attribute off, since the component is now in use and CSS should reflect that.
+    this.initialized = false;
     this.openStatus = !this.openStatus;
   }
 
@@ -108,6 +119,12 @@ export class DrawerElement extends LitElement {
   //     adoptStyles(s, [css`${DrawerElement.styles}`]);
   //   }
   // }
+
+  // Set initialized to true for use in CSS when element is connected to DOM.
+  connectedCallback() {
+    super.connectedCallback();
+    this.initialized = true;
+  }
 
   // TODO: props and props validation working! Now to test that a bit more and return to the outright styling and so forth!
   static get styles() {

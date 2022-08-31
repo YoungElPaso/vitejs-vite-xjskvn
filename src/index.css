@@ -79,6 +79,11 @@ mds-drawer:defined {
   /* TOOD: need to figure out how to do drawer behaviour in CSS animations - switch directions etc...Want to use as little JS as possible. Might need to add another class/attribute to handle state change and so CSS - i.e. reflect prop to attribute so it's actually 'true' or 'false': Resume later. Checking out for now. */
 }
 
+/* TODO: flesh out initialized styles. */
+mds-drawer[initialized] {
+  border: 10px lime solid;
+}
+
 /* Basic fade-in animation. */
 @keyframes fade-in {
   from {
