@@ -100,6 +100,8 @@ mds-drawer[initialized] {
 
 /* TODO: add an set of keyframes for active facets etc and use that to simply extend regular <details> tag with animation on opening - i.e. animate height - calculate that I guess? */
 
+/* TODO: review other requirements for this issue in TODOs in MS TODOs and of course the code! */
+
 /* Basic slide-in-from-left animation. */
 @keyframes slide-from-left {
   from {
