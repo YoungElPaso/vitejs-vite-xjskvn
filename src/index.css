@@ -71,12 +71,15 @@ mds-drawer:defined {
   /* opacity: 1; */
   /* TODO: not clear where to divide up these CSS rules...kinda don't want to split concerns across many files but maybe if there's some 'transition' classes or other such 'states' and animations in an external file thats ok? */
   /* transition: all 0.3s ease-in-out; */
-  animation-name: fade-in;
-  animation-duration: 0.3s;
+  animation-name: slide-from-left, fade-in;
+  animation-duration: 0.3s, 0.3s;
+  animation-play-state: paused, running;
+  /* animation-direction: reverse, normal; */
+  /* animation-play-state: initial; */
+  /* TOOD: need to figure out how to do drawer behaviour in CSS animations - switch directions etc...Want to use as little JS as possible. Might need to add another class/attribute to handle state change and so CSS - i.e. reflect prop to attribute so it's actually 'true' or 'false': Resume later. Checking out for now. */
 }
 
-/* TODO: should probably handle the slide-in animation same way here... then can adopt it in components that load this stylesheet. */
-/* TODO: gotta run get kids @ 211. Take lunch on MM. */
+/* Basic fade-in animation. */
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -86,8 +89,20 @@ mds-drawer:defined {
   }
 }
 
+/* Basic slide-in-from-left animation. */
+@keyframes slide-from-left {
+  from {
+    margin-left: calc(-33vw - 1rem);
+  }
+  to {
+    margin-left: 0;
+  }
+}
+
 mds-drawer:not(:defined) {
+  /* Should basically just be partaking of 'off-screen' styles. */
   margin-left: -1000px;
+
   /* Not defined, so by definition not visible...need to do animations not transition here! */
   /* opacity: 0; */
   /* transition: opacity 8s ease-in; */

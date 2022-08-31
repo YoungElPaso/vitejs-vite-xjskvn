@@ -120,17 +120,15 @@ export class DrawerElement extends LitElement {
         position: relative;
         background: white;
         width: calc(33vw);
-        margin-left: calc(-33vw - 1rem);
         height: calc(100vh - 1rem);
-        transition: margin 0.2s;
         padding: 0.5rem;
-        // overflow: hidden;
       }
+
       :host([openStatus]) {
-        margin-left: 0;
         overflow: visible;
+        animation-play-state: running !important;
       }
-      
+
 
       :host([openStatus]) button {
         // background: black;
