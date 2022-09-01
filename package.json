@@ -7,13 +7,11 @@
   "exports": {
     ".": "./dist/my-element.es.js"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "tsc": "tsc"
+    "test": "echo 'do some tests - maybe just Jest, maybe Cypress?'"
   },
   "dependencies": {
     "lit": "^2.2.8",
