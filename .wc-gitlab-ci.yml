@@ -2,6 +2,7 @@ stages:
   - build
   - test
 
+# Builds dependencies, then builds the web components.
 build:
   script:
     - npm ci
@@ -11,6 +12,7 @@ build:
       - './node_modules'
       - './build'
 
+# Runs unit tests.
 test:unit-tests:
   script: 
     - npm test
