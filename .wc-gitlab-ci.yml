@@ -12,7 +12,7 @@ build:
       - './node_modules'
       - './build'
 
-# Runs unit tests.
+# Runs unit tests on the web component internals - like typechecking etc.
 test:unit-tests:
   script: 
     - npm test
