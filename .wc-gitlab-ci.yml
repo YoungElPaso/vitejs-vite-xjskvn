@@ -1,0 +1,18 @@
+stages:
+  - build
+  - test
+
+build:
+  script:
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - './node_modules'
+      - './build'
+
+test:unit-tests:
+  script: 
+    - npm test
+  needs:
+    - build
