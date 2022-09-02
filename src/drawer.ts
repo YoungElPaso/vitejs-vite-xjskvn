@@ -4,7 +4,6 @@ import { LitElement, html, property, customElement, css } from 'lit-element';
 // Get styles from css-importer.
 import mainstyles from './css-importer';
 
-// @ts-ignore.
 import styles from './test.module.css?inline' assert { type: 'css' };
 
 // See: https://youtu.be/RmGHnYUqQ4k for using Zod to add type inference and safety.
