@@ -1,5 +1,5 @@
 {
-  "name": "vite-lit-starter",
+  "name": "mds-wc",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,17 +7,20 @@
   "exports": {
     ".": "./dist/my-element.es.js"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "test": "echo 'do some tests - maybe just Jest, TSC, maybe Cypress?' && tsc"
+    "test": "echo 'todo: add some Jest tests. Running tsc to check types...' && tsc --noEmit"
   },
   "dependencies": {
     "lit": "^2.2.8",
     "zod": "^3"
   },
   "devDependencies": {
+    "@types/css-modules": "^1.0.2",
     "typescript": "^4.7.4",
     "vite": "^3.0.7"
   }

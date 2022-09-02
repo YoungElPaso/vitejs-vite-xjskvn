@@ -4,14 +4,11 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   build: {
     lib: {
-      entry: ['src/my-element.js', 'src/new-element.ts'],
+      entry: 'src/drawer.ts',
       formats: ['es'],
     },
     rollupOptions: {
       external: /^lit/,
-      cssModuleOptions: {
-        scopeBehaviour: 'global',
-      },
     },
   },
   // TODO: could just import CSS modules and then '.toString' but that's inefficient - will work but every instance will have copy of CSS as string. better to try and use https://lit.dev/docs/api/styles/#adoptStyles.

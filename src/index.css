@@ -102,6 +102,8 @@ mds-drawer[initialized] {
 
 /* TODO: review other requirements for this issue in TODOs in MS TODOs and of course the code! */
 
+/* TODO: better figure out teh TSC build errors! Declaration stuff... */
+
 /* Basic slide-in-from-left animation. */
 @keyframes slide-from-left {
   from {

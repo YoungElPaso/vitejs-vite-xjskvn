@@ -4,7 +4,10 @@ import { LitElement, html, property, customElement, css } from 'lit-element';
 // Get styles from css-importer.
 import mainstyles from './css-importer';
 
-import styles from './test.module.css?inline' assert { type: 'css' };
+// TODO: remove this later if possible.
+//  @ts-ignore.
+// TODO: it's the ?inline that is breaking types...fuck...that's a lot of wasted time kinda! Still needed *.module.css but fuck.
+// import styles from './test.module.css?inline' assert { type: 'css' };
 
 // See: https://youtu.be/RmGHnYUqQ4k for using Zod to add type inference and safety.
 import { z } from 'zod';
