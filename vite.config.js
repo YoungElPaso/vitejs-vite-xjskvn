@@ -4,6 +4,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   build: {
     lib: {
+      // TODO: figure out multiple entry points?
       entry: 'src/drawer.ts',
       formats: ['es'],
     },
