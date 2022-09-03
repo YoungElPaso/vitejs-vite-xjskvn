@@ -1,7 +1,6 @@
 import { css } from 'lit-element';
 
 // TODO: create issue or check for issue on Vite repo for ?inline breaking types! No issue, so just removing? Fuckit, just tell tsc to ignore for now?
-// @ts-ignore.
 import styles from './index.css?inline';
 import { CSSResult, unsafeCSS } from 'lit';
 
