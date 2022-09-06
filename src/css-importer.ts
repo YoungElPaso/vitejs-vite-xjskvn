@@ -1,8 +1,8 @@
-import { css } from 'lit-element';
-
-// TODO: create issue or check for issue on Vite repo for ?inline breaking types! No issue, so just removing? Fuckit, just tell tsc to ignore for now?
-import styles from './index.css?inline';
+// Import Lit CSS utilities.
 import { CSSResult, unsafeCSS } from 'lit';
+
+// Import the CSS common to all web components for re-use.
+import styles from './index.css?inline';
 
 /**
  * Exports a CSSResult from imported CSS file. Useful for sharing styles across components.
