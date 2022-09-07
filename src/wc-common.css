@@ -18,7 +18,7 @@ mds-drawer:defined {
 
 /* TODO: flesh out initialized styles. See related Codepen.*/
 mds-drawer[initialized] {
-  border: 10px lime solid;
+  /* border: 10px lime solid; */
 }
 
 /* Basic fade-in animation. */

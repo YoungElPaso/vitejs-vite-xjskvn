@@ -55,7 +55,6 @@ export class DrawerElement extends LitElement {
     // TODO: gotta be a way to avoid this properties repetition everywhere...probably just use static properties.
     let validationResult = DrawerProps.safeParse({
       open: this.openStatus,
-      side: this.side,
       sectionTitle: this.sectionTitle,
       initialized: this.initialized,
     });
@@ -105,8 +104,6 @@ export class DrawerElement extends LitElement {
       
       <h3>${this.sectionTitle}</h3>
       ${this.openStatus}
-      ${this.side}
-
       <slot></slot>
     </section>`;
   }
