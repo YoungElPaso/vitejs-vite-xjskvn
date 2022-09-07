@@ -1,69 +1,24 @@
-import { adoptStyles, unsafeCSS } from 'lit';
+// Import LitElement stuff.
 import { LitElement, html, property, customElement, css } from 'lit-element';
 
-// Get styles from css-importer.
-import mainstyles from './css-importer';
-
-// See: https://youtu.be/RmGHnYUqQ4k for using Zod to add type inference and safety.
-import { z } from 'zod';
-
-// Bummer! Not the modules I wanted....TODO: continue to look into this later! Want the un-hashed version! TODO: check the Google article about importing css as module style - not the npm CSS MOdules.
-// console.log(styles);
-
-// TODO: try this??? https://lit.dev/docs/api/styles/#adoptStyles
-
-// Define zod schema/api for the whole component So can be in one place and validate using a Zod parse. All props are required by default.
-const DrawerProps = z.object({
-  // Open or closed status - defaults to false.
-  openStatus: z.boolean().default(false),
-
-  // TODO: don't actually need side either - really only makes sense on left I think(?)
-  // Which side to position the drawer (i.e. which direction it closes to).
-  side: z.enum(['right', 'left']),
-
-  // A title for the entire section, optional.
-  sectionTitle: z.string().optional(),
-
-  // TODO: Should we have width as a percentage? Probably not. Let's just settle on 75%.
-
-  // TODO: need an internal property called 'initalized' or something that should disappear on first render or connectedCallback or first interaction or if visible. Required to handle loading state. Could also remove via any click as well since that's an indication of interaction.
-  initialized: z.boolean().default(false),
-});
-
-// Convert schema to a type.
-type DrawerTypes = z.infer<typeof DrawerProps>;
-
-// Validate props at run-time as well, see: https://stackoverflow.com/questions/68008726/how-to-declare-a-required-property-in-lit-element/68014897#68014897
+// Get common WC styles from css-importer.
+import sharedWCStyles from './css-importer';
 
 // Declare new custom element: mds-drawer.
 @customElement('mds-drawer')
 export class DrawerElement extends LitElement {
-  // Declare Lit element properties w/ types - reusing Zod/DrawerTypes work.
-  @property({ type: String }) side: DrawerTypes['side'] = 'left';
+  // Declare Lit element properties w/ types.
 
-  // This property/attribute reflects so we can use it in CSS.
+  // This property/attribute reflects so we can use it in CSS via attribute selector.
   @property({ type: Boolean, reflect: true })
-  openStatus: DrawerTypes['openStatus'] = false;
+  openStatus: Boolean = false;
 
-  @property({ type: String }) sectionTitle: DrawerTypes['sectionTitle'];
+  // A property for a section title for the drawer.
+  @property({ type: String }) sectionTitle: String = '';
 
+  // A property to specify when the component is 'ready' and reflected for CSS via attribute selector. Need to know if component is fully bootstrapped so it can be styled as such.
   @property({ type: Boolean, reflect: true })
-  initialized: DrawerTypes['initialized'] = false;
-
-  // Validate props using zod safeParse - won't automatically throw an error if a prop is wrong - so we can output a warning to console.
-  validateProps() {
-    // TODO: gotta be a way to avoid this properties repetition everywhere...probably just use static properties.
-    let validationResult = DrawerProps.safeParse({
-      open: this.openStatus,
-      sectionTitle: this.sectionTitle,
-      initialized: this.initialized,
-    });
-    if (!validationResult.success) {
-      console.warn('props not set correctly!', validationResult.error);
-    } else {
-      console.log('current props:', validationResult.data);
-    }
-  }
+  initialized: Boolean = false;
 
   // Handle button click.
   handleClick() {
@@ -74,11 +29,8 @@ export class DrawerElement extends LitElement {
     this.openStatus = !this.openStatus;
   }
 
-  // Render element.
+  // Render the element.
   render() {
-    // Call validation function so props can be evaluated at runtime as well.
-    this.validateProps();
-
     // Conditional button label.
     let buttonLabel = this.openStatus ? 'close' : 'open';
 
@@ -92,8 +44,6 @@ export class DrawerElement extends LitElement {
     let buttonIcon = this.openStatus ? xIcon : hamburgerIcon;
 
     return html`
-    
-    
     <section>
       <button @click=${this.handleClick} >
         <span class="sr-only">
@@ -122,16 +72,15 @@ export class DrawerElement extends LitElement {
   //   }
   // }
 
-  // Set initialized to true for use in CSS when element is connected to DOM.
+  // Do some initialization stuff when component 'connects' to DOM.
   connectedCallback() {
     super.connectedCallback();
+    // Set initialized to true for use in CSS when element is connected to DOM.
     this.initialized = true;
   }
 
-  // TODO: props and props validation working! Now to test that a bit more and return to the outright styling and so forth!
+  // Set styles.
   static get styles() {
-    // TODO: this left/right needs to be dynamic based on side prop and animation style - tho fade doesn't make any sense really in this case so can remove that as well.
-    // console.log(unsafeCSS(classes));
     return [
       css`
       :host {
@@ -171,9 +120,8 @@ export class DrawerElement extends LitElement {
         background: white;
       }
     `,
-      mainstyles,
-      // TODO: is this the equivalent of using adoptStyles? Cause if so, what's the point??? Perf? Maybe it's more standard? I guess that's likely the case. Seems the main use for it for now tho, until https://web.dev/css-module-scripts/ lands is to create a 'provider' component that allows others to adoptStyles from(?)
-      // unsafeCSS(mainstyles),
+      // Include shared styles provided by css-importer.
+      sharedWCStyles,
     ];
   }
 }
