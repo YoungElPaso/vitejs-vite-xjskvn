@@ -1,4 +1,5 @@
 /* Screen-reader only utility. */
+
 .sr-only:not(:focus):not(:active) {
   clip: rect(0 0 0 0);
   clip-path: inset(100%);
@@ -9,35 +10,10 @@
   width: 1px;
 }
 
-/* See if we can import this! - Yes we can using unsafe CSS and importing the whole thing; CSS modules would be better! TODO: see about dynamically creating .module.css file and loading *parts* of it! */
-button {
-  position: absolute;
-  top: 0;
-  right: -3em;
-  width: 3em;
-  height: 3em;
-  padding: 0;
-  margin: 0;
-  background: white;
-  border: none;
-}
-button:hover,
-button:active,
-button:focus {
-  background: white;
-}
-
 mds-drawer:defined {
-  /* background: green; */
-  /* opacity: 1; */
-  /* TODO: not clear where to divide up these CSS rules...kinda don't want to split concerns across many files but maybe if there's some 'transition' classes or other such 'states' and animations in an external file thats ok? */
-  /* transition: all 0.3s ease-in-out; */
   animation-name: slide-from-left, fade-in;
   animation-duration: 0.3s, 0.3s;
   animation-play-state: paused, running;
-  /* animation-direction: reverse, normal; */
-  /* animation-play-state: initial; */
-  /* TOOD: need to figure out how to do drawer behaviour in CSS animations - switch directions etc...Want to use as little JS as possible. Might need to add another class/attribute to handle state change and so CSS - i.e. reflect prop to attribute so it's actually 'true' or 'false': Resume later. Checking out for now. */
 }
 
 /* TODO: flesh out initialized styles. See related Codepen.*/
@@ -57,13 +33,7 @@ mds-drawer[initialized] {
 
 /* TODO: probably re-work animations as specific to Drawer and put the animation definitions in the CSS for the Component? No need to generalize them at the moment really - Just need to have the fade-in animation here for all components as they go from undefined to defined - maybe initial width/margin-left for Drawer too but dunno about that - should use preload maybe to block rendering of component till CSS is loaded anyway? */
 
-/* TODO: rename and re-purpose this file or a similar one to 'shared-component-css' or something similar - should *only* contain CSS for components in general and Drawer etc in specific. */
-
 /* TODO: add an set of keyframes for active facets etc and use that to simply extend regular <details> tag with animation on opening - i.e. animate height - calculate that I guess? */
-
-/* TODO: review other requirements for this issue in TODOs in MS TODOs and of course the code! */
-
-/* TODO: better figure out teh TSC build errors! Declaration stuff... */
 
 /* Basic slide-in-from-left animation. */
 @keyframes slide-from-left {
@@ -83,4 +53,18 @@ mds-drawer:not(:defined) {
   /* opacity: 0; */
   /* transition: opacity 8s ease-in; */
   /* background: red; */
+}
+
+/* Initial states for mds-mobile-adapted-content based on media-query. */
+@media (min-width: 420px) {
+  /* If on desktop, hide all mobile-only slot content. */
+  mds-mobile-adapted-content [slot='mobile-only'] {
+    display: none;
+  }
+}
+@media (max-width: 420px) {
+  /* If on mobile, show only mobile-only slot content. */
+  mds-mobile-adapted-content :not([slot='mobile-only']) {
+    display: none;
+  }
 }

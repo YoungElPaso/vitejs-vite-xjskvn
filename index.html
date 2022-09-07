@@ -7,17 +7,19 @@
     <title>Vite + Lit</title>
     <!-- Basic styles for demo purposes. -->
     <link rel="stylesheet" href="./src/demo.css" />
-    <!-- WC common styles. -->
+
+    <!-- WC common styles w/ optional preload.-->
+    <link rel="preload" href="./src/wc-common.css" as="style" />
     <link rel="stylesheet" href="./src/wc-common.css" />
+
     <!-- Import the wc library. -->
+    <link rel="preload" href="./src/mds-web-components.ts" as="script" />
     <script type="module" src="/src/mds-web-components.ts"></script>
   </head>
   <body>
-    <!-- TODO: flesh this out as utilities css sharer? -->
-    <mds-utilities-css-></mds-utilities-css->
     <mds-mobile-adapted-content>
-      <h1 slot="mobile-only">This is visible on mobile</h1>
-      <!-- <h2>This is visible only on desktop</h2> -->
+      <h1 slot="mobile-only">This is visible on mobile only</h1>
+      <h2>This is visible only on desktop</h2>
     </mds-mobile-adapted-content>
     <div id="container">
       <!-- TODO: in theory, should wrap this in some mobile checking logic component? Might be useful? Or render a regular content slot on desktop but dump into a Drawer only on mobile? Kinda makes sense to me! <mds-mobile-adapted-content/>? -->

@@ -3,5 +3,8 @@
 // Import the DrawerElement web component.
 import { DrawerElement } from './drawer';
 
+// Import the MobileAdaptedContent web component.
+import { MobileAdaptedContent } from './mobile-adapted-content';
+
 // Export the DrawerElement.
-export { DrawerElement };
+export { DrawerElement, MobileAdaptedContent };
