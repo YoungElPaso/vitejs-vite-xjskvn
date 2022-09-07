@@ -58,20 +58,6 @@ export class DrawerElement extends LitElement {
     </section>`;
   }
 
-  // TODO: finish internal logic, including button. Desktop layout CSS. Mobile template/conditional logic.
-
-  // TODO: document this; maybe do adoption from mds-utilities-css component?
-  // TODO: clean it all up; add to main repo - make sure active etc is in place. Maybe even include Portal WC?
-  // connectedCallback() {
-  //   super.connectedCallback();
-  //   let s = this.shadowRoot;
-  //   // // Add common styles from a loaded CSS file; adopt as constructed stylesheet.
-  //   // TODO: retry later; this almost works!
-  //   if (s) {
-  //     adoptStyles(s, [css`${DrawerElement.styles}`]);
-  //   }
-  // }
-
   // Do some initialization stuff when component 'connects' to DOM.
   connectedCallback() {
     super.connectedCallback();
@@ -96,13 +82,7 @@ export class DrawerElement extends LitElement {
         overflow: visible;
         animation-play-state: running !important;
       }
-
-
-      :host([openStatus]) button {
-        // background: black;
-        // color: white;
-      }
-
+      
       button {
         position: absolute;
         top: 0;
