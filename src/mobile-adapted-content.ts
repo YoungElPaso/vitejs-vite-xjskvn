@@ -6,6 +6,7 @@ import { LitElement, html, customElement } from 'lit-element';
 export class MobileAdaptedContent extends LitElement {
   render() {
     // Do a media query to see width of window.
+    // TODO: decide what the query-string should be later; e.g. which width etc.
     let mq: Boolean = window.matchMedia('(max-width: 420px)').matches;
 
     // Default template to render the main default slot content.

@@ -7,4 +7,5 @@ import styles from './wc-common.css?inline';
 /**
  * Exports a Lit CSSResult from imported CSS file. Useful for sharing styles across components.
  */
-export default unsafeCSS(styles) as CSSResult;
+let sharedWCStyles = unsafeCSS(styles);
+export { sharedWCStyles };

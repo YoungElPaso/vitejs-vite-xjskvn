@@ -3,7 +3,7 @@ import { TemplateResult } from 'lit';
 import { LitElement, html, property, customElement, css } from 'lit-element';
 
 // Get common WC styles from css-importer.
-import sharedWCStyles from './css-importer';
+import { sharedWCStyles } from './css-importer';
 
 // Declare new custom element: mds-drawer.
 @customElement('mds-drawer')
