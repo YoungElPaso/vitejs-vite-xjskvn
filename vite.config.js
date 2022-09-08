@@ -13,8 +13,8 @@ export default defineConfig({
       fileName: 'mds-wcs',
     },
     rollupOptions: {
-      // Lit marked as external - i.e. a peer dependency.
-      external: /^lit/,
+      // Lit marked as external - i.e. a peer dependency. Reduces bundle size if external by 22Kb but adds complexity - required to be loaded separately. TODO: Consider benefits of NOT bundling Lit directly later.
+      // external: /^lit/,
     },
     outDir: 'dist',
   },
