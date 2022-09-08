@@ -95,9 +95,9 @@ export class DrawerElement extends LitElement {
       button {
         position: absolute;
         top: 0;
-        right: -3em;
-        width: 3em;
-        height: 3em;
+        right: -2rem;
+        width: 2rem;
+        height: 2rem;
         padding: 0;
         margin: 0;
         background: white;

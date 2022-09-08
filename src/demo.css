@@ -1,4 +1,13 @@
 #container {
   display: flex;
   flex-direction: row;
+  border: 2px #aaa solid;
+  overflow: hidden;
+  height: 80vh;
+}
+
+.main {
+  padding: 0 2.5rem;
+  background: #eee;
+  flex-grow: 1;
 }
