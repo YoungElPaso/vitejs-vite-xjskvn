@@ -38,8 +38,12 @@ export class ExtraDetails extends LitElement {
     // Add an event listener to handle clicks on the details element and update properties.
     let t = this;
     this.addEventListener('click', function (e) {
-      console.log('event', e, t.isActive);
-      t.isActive = t._details[0].open ? 'active' : 'inactive';
+      // Need to wrap in requestAnimationFrame to get the proper value of details.open after it's changed!
+      // TODO: unsure this makes sense...
+      requestAnimationFrame(function () {
+        t.isActive = t._details[0].open ? 'active' : 'inactive';
+        console.log(t._details[0].open);
+      });
     });
 
     // super.firstUpdated();
@@ -50,7 +54,7 @@ export class ExtraDetails extends LitElement {
 
     // console.log('summary', this._summary);
 
-    // this._details[0].open = this.isActive == 'active' ? true : false;
+    this._details[0].open = this.isActive == 'active' ? true : false;
 
     // Evaluate some stuff about the children and set some props. 1) Set isActive=active if childNodes contain a 'selected' or 'active' class only if isActive is 'inactive' already and the initial value. 2) Get the summary element and get it's height - can use that as initialHeight for animation.
 
