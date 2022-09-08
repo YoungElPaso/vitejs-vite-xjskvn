@@ -30,6 +30,8 @@ export class ExtraDetails extends LitElement {
 
   // TODO: also need to add animation to open/close. For that need to compute heights and then transition between them - so dynamically set style based on children? Could calculate on firstUpdate maybe?
 
+  // TODO: do animation based on https://css-tricks.com/how-to-animate-the-details-element-using-waapi/ and continue to listen to click event on Summary to propagate click and state change to parent as well as handle click to handle animation (sync open/isActive props/attributes) and do animation/CSS on state change.
+
   // TODO: also need to check if children of details are 'active' if so bubble up an event to set the property? Sure. sounds good.
 
   firstUpdated() {
