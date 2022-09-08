@@ -7,7 +7,9 @@
   "exports": {
     ".": "./dist/mds-wcs.js"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
