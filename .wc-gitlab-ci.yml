@@ -1,20 +1,25 @@
 stages:
-  - build
+  - install
   - test
 
-# Builds dependencies, then builds the web components.
-build:
+# Install dependencies.
+install:
   script:
     - npm ci
-    - npm run build
   artifacts:
     paths:
       - './node_modules'
-      - './build'
 
-# Runs unit tests on the web component internals - like typechecking etc.
-test:unit-tests:
+# Runs tsc (TypeScript Compiler) on the web component source.
+test:tsc-tests:
   script: 
     - npm test
   needs:
-    - build
+    - install
+
+# Run test build.
+test:test-build
+  script:
+    - npm run build
+  needs:
+    - install
