@@ -1,20 +1,22 @@
-import { LitElement, html, property, customElement, css } from 'lit-element';
+import { TemplateResult } from 'lit';
+import { LitElement, html, customElement } from 'lit-element';
 
+// Define new element to conditionally render content on mobile or desktop declaratively using a named slot and default slot.
 @customElement('mds-mobile-adapted-content')
 export class MobileAdaptedContent extends LitElement {
   render() {
-    // Render the main default slot content.
-    let renderString = html`<slot></slot>`;
+    // Do a media query to see width of window.
+    let mq: Boolean = window.matchMedia('(max-width: 420px)').matches;
 
-    // Do a media query.
-    let mq = window.matchMedia('(max-width: 420px)');
+    // Default template to render the main default slot content.
+    let renderTemplate: TemplateResult = html`<slot></slot>`;
 
-    // But, check if on mobile; render mobile-only slot if so.
-    if (mq.matches) {
-      renderString = html`
+    // If on mobile, renderTemplate using mobile-only slot.
+    if (mq) {
+      renderTemplate = html`
           <slot name="mobile-only"></slot>`;
     }
 
-    return html`${renderString} `;
+    return renderTemplate;
   }
 }
