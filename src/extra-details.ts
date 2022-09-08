@@ -54,7 +54,11 @@ export class ExtraDetails extends LitElement {
 
     // console.log('summary', this._summary);
 
+    // TODO: replace with a summary click. Close the circle. Make it all event based? Hmmm, maybe not...No, prop should go down, click event should go up.
+    // TODO: move these lines around and make it clear w/ comments how this component is being initialized.
     this._details[0].open = this.isActive == 'active' ? true : false;
+
+    // TODO: also get summary height as initial height for inactive state and use w/ animation with other child elements heights to create 'from' 'to' values.
 
     // Evaluate some stuff about the children and set some props. 1) Set isActive=active if childNodes contain a 'selected' or 'active' class only if isActive is 'inactive' already and the initial value. 2) Get the summary element and get it's height - can use that as initialHeight for animation.
 
@@ -96,7 +100,10 @@ export class ExtraDetails extends LitElement {
     return [
       // TODO: set some basic styles, maybe border? Maybe initial height?
       css`
-      :host {
+      :host([isActive="inactive"]) {
+        display: block;
+        height: 1rem;
+        background: red;
       }
       `,
       sharedWCStyles,
