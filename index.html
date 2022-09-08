@@ -22,18 +22,26 @@
       <h2>This is visible only on desktop</h2>
     </mds-mobile-adapted-content>
     <div id="container">
-      <!-- TODO: in theory, should wrap this in some mobile checking logic component? Might be useful? Or render a regular content slot on desktop but dump into a Drawer only on mobile? Kinda makes sense to me! <mds-mobile-adapted-content/>? -->
-
       <!-- Declaratively specifies which content should be displayed on mobile, vs desktop; rather than merely hide w/ CSS media-queries. Allows content to be moved around declaratively in HTML rather than .append() or whatever purely in JS! -->
       <mds-mobile-adapted-content>
         <mds-drawer slot="mobile-only" sectionTitle="Hello World">
-          Some menu in drawerzzzzzzzzzzzzzzzzzzz.
+          Some menu in drawer.
         </mds-drawer>
         Some menu not in drawer. Or could be anything else!
       </mds-mobile-adapted-content>
 
       <section>
         <h2>Main Content</h2>
+
+        <!-- Details enhanced with the mds-details custom element using 'is' implementation. -->
+        <details is="mds-details" open>
+          <ul>
+            <li>Foobar</li>
+            <li class="selected">Barfoo</li>
+            <li>Jaroof</li>
+            <li>Snaggleboof</li>
+          </ul>
+        </details>
       </section>
     </div>
   </body>
