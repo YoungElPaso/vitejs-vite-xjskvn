@@ -10,7 +10,7 @@ install:
     paths:
       - './node_modules'
 
-# Runs tsc (TypeScript Compiler) on the web component source.
+# Runs tsc (TypeScript Compiler) on the web component source to check types.
 test:tsc-tests:
   script: 
     - npm test
