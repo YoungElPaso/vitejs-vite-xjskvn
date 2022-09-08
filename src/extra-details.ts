@@ -100,10 +100,17 @@ export class ExtraDetails extends LitElement {
     return [
       // TODO: set some basic styles, maybe border? Maybe initial height?
       css`
+      :host {display: block;
+        overflow: hidden;
+        transition: height 0.2s;
+      }
       :host([isActive="inactive"]) {
-        display: block;
-        height: 1rem;
+        height: 0.51rem;
         background: red;
+      }
+      :host([isActive="active"]) {
+        height: 5rem;
+        background: green;
       }
       `,
       sharedWCStyles,
