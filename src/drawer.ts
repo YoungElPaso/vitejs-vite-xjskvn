@@ -8,7 +8,7 @@ import sharedWCStyles from './css-importer';
 // Declare new custom element: mds-drawer.
 @customElement('mds-drawer')
 export class DrawerElement extends LitElement {
-  // Declare Lit element properties w/ types.
+  // Declare properties w/ types.
 
   // This property/attribute reflects so we can style it in CSS via attribute selector.
   @property({ type: Boolean, reflect: true })
