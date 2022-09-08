@@ -69,20 +69,22 @@ export class DrawerElement extends LitElement {
   static get styles() {
     return [
       css`
+      /* Main containing element for drawer. */
       :host {
         display: flex;
         position: relative;
         background: white;
+        padding: 0.5rem;
         width: calc(33vw);
         height: calc(100vh - 1rem);
-        padding: 0.5rem;
       }
 
       :host([openStatus]) {
         overflow: visible;
         animation-play-state: running !important;
       }
-      
+
+      /* Open/close button for drawer. */
       button {
         position: absolute;
         top: 0;
@@ -93,11 +95,6 @@ export class DrawerElement extends LitElement {
         margin: 0;
         background: white;
         border: none;
-      }
-      button:hover,
-      button:active,
-      button:focus {
-        background: white;
       }
     `,
       // Include shared styles provided by css-importer.
