@@ -264,7 +264,7 @@ _.finalized = !0, _.elementProperties = /* @__PURE__ */ new Map(), _.elementStyl
  * SPDX-License-Identifier: BSD-3-Clause
  */
 var B;
-const k = window, A = k.trustedTypes, X = A ? A.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, $ = `lit$${(Math.random() + "").slice(9)}$`, dt = "?" + $, _t = `<${dt}>`, b = document, C = (n = "") => b.createComment(n), x = (n) => n === null || typeof n != "object" && typeof n != "function", ct = Array.isArray, mt = (n) => ct(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", E = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, Y = /-->/g, tt = />/g, f = RegExp(`>|[ 	
+const k = window, A = k.trustedTypes, X = A ? A.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, $ = `lit$${(Math.random() + "").slice(9)}$`, dt = "?" + $, _t = `<${dt}>`, b = document, C = (n = "") => b.createComment(n), x = (n) => n === null || typeof n != "object" && typeof n != "function", ct = Array.isArray, mt = (n) => ct(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", S = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, Y = /-->/g, tt = />/g, f = RegExp(`>|[ 	
 \f\r](?:([^\\s"'>=/]+)([ 	
 \f\r]*=[ 	
 \f\r]*(?:[^ 	
@@ -279,14 +279,14 @@ const k = window, A = k.trustedTypes, X = A ? A.createPolicy("lit-html", { creat
   return o._$AI(n), o;
 }, y = b.createTreeWalker(b, 129, null, !1), At = (n, t) => {
   const e = n.length - 1, i = [];
-  let s, r = t === 2 ? "<svg>" : "", o = E;
+  let s, r = t === 2 ? "<svg>" : "", o = S;
   for (let l = 0; l < e; l++) {
     const a = n[l];
     let v, h, c = -1, u = 0;
     for (; u < a.length && (o.lastIndex = u, h = o.exec(a), h !== null); )
-      u = o.lastIndex, o === E ? h[1] === "!--" ? o = Y : h[1] !== void 0 ? o = tt : h[2] !== void 0 ? (pt.test(h[2]) && (s = RegExp("</" + h[2], "g")), o = f) : h[3] !== void 0 && (o = f) : o === f ? h[0] === ">" ? (o = s != null ? s : E, c = -1) : h[1] === void 0 ? c = -2 : (c = o.lastIndex - h[2].length, v = h[1], o = h[3] === void 0 ? f : h[3] === '"' ? it : et) : o === it || o === et ? o = f : o === Y || o === tt ? o = E : (o = f, s = void 0);
+      u = o.lastIndex, o === S ? h[1] === "!--" ? o = Y : h[1] !== void 0 ? o = tt : h[2] !== void 0 ? (pt.test(h[2]) && (s = RegExp("</" + h[2], "g")), o = f) : h[3] !== void 0 && (o = f) : o === f ? h[0] === ">" ? (o = s != null ? s : S, c = -1) : h[1] === void 0 ? c = -2 : (c = o.lastIndex - h[2].length, v = h[1], o = h[3] === void 0 ? f : h[3] === '"' ? it : et) : o === it || o === et ? o = f : o === Y || o === tt ? o = S : (o = f, s = void 0);
     const U = o === f && n[l + 1].startsWith("/>") ? " " : "";
-    r += o === E ? a + _t : c >= 0 ? (i.push(v), a.slice(0, c) + "$lit$" + a.slice(c) + $ + U) : a + $ + (c === -2 ? (i.push(void 0), l) : U);
+    r += o === S ? a + _t : c >= 0 ? (i.push(v), a.slice(0, c) + "$lit$" + a.slice(c) + $ + U) : a + $ + (c === -2 ? (i.push(void 0), l) : U);
   }
   const d = r + (n[e] || "<?>") + (t === 2 ? "</svg>" : "");
   if (!Array.isArray(n) || !n.hasOwnProperty("raw"))
@@ -312,7 +312,7 @@ class P {
               const u = v[o++];
               if (h.push(c), u !== void 0) {
                 const U = s.getAttribute(u.toLowerCase() + "$lit$").split($), T = /([.?@])?(.*)/.exec(u);
-                l.push({ type: 1, index: r, name: T[2], strings: U, ctor: T[1] === "." ? wt : T[1] === "?" ? Et : T[1] === "@" ? Ct : R });
+                l.push({ type: 1, index: r, name: T[2], strings: U, ctor: T[1] === "." ? wt : T[1] === "?" ? St : T[1] === "@" ? Ct : R });
               } else
                 l.push({ type: 6, index: r });
             }
@@ -344,13 +344,13 @@ class P {
     return i.innerHTML = t, i;
   }
 }
-function S(n, t, e = n, i) {
+function E(n, t, e = n, i) {
   var s, r, o, d;
   if (t === w)
     return t;
   let l = i !== void 0 ? (s = e._$Cl) === null || s === void 0 ? void 0 : s[i] : e._$Cu;
   const a = x(t) ? void 0 : t._$litDirective$;
-  return (l == null ? void 0 : l.constructor) !== a && ((r = l == null ? void 0 : l._$AO) === null || r === void 0 || r.call(l, !1), a === void 0 ? l = void 0 : (l = new a(n), l._$AT(n, e, i)), i !== void 0 ? ((o = (d = e)._$Cl) !== null && o !== void 0 ? o : d._$Cl = [])[i] = l : e._$Cu = l), l !== void 0 && (t = S(n, l._$AS(n, t.values), l, i)), t;
+  return (l == null ? void 0 : l.constructor) !== a && ((r = l == null ? void 0 : l._$AO) === null || r === void 0 || r.call(l, !1), a === void 0 ? l = void 0 : (l = new a(n), l._$AT(n, e, i)), i !== void 0 ? ((o = (d = e)._$Cl) !== null && o !== void 0 ? o : d._$Cl = [])[i] = l : e._$Cu = l), l !== void 0 && (t = E(n, l._$AS(n, t.values), l, i)), t;
 }
 class bt {
   constructor(t, e) {
@@ -403,7 +403,7 @@ class O {
     return this._$AB;
   }
   _$AI(t, e = this) {
-    t = S(this, t, e), x(t) ? t === p || t == null || t === "" ? (this._$AH !== p && this._$AR(), this._$AH = p) : t !== this._$AH && t !== w && this.$(t) : t._$litType$ !== void 0 ? this.T(t) : t.nodeType !== void 0 ? this.k(t) : mt(t) ? this.O(t) : this.$(t);
+    t = E(this, t, e), x(t) ? t === p || t == null || t === "" ? (this._$AH !== p && this._$AR(), this._$AH = p) : t !== this._$AH && t !== w && this.$(t) : t._$litType$ !== void 0 ? this.T(t) : t.nodeType !== void 0 ? this.k(t) : mt(t) ? this.O(t) : this.$(t);
   }
   S(t, e = this._$AB) {
     return this._$AA.parentNode.insertBefore(t, e);
@@ -462,12 +462,12 @@ class R {
     const r = this.strings;
     let o = !1;
     if (r === void 0)
-      t = S(this, t, e, 0), o = !x(t) || t !== this._$AH && t !== w, o && (this._$AH = t);
+      t = E(this, t, e, 0), o = !x(t) || t !== this._$AH && t !== w, o && (this._$AH = t);
     else {
       const d = t;
       let l, a;
       for (t = r[0], l = 0; l < r.length - 1; l++)
-        a = S(this, d[i + l], e, l), a === w && (a = this._$AH[l]), o || (o = !x(a) || a !== this._$AH[l]), a === p ? t = p : t !== p && (t += (a != null ? a : "") + r[l + 1]), this._$AH[l] = a;
+        a = E(this, d[i + l], e, l), a === w && (a = this._$AH[l]), o || (o = !x(a) || a !== this._$AH[l]), a === p ? t = p : t !== p && (t += (a != null ? a : "") + r[l + 1]), this._$AH[l] = a;
     }
     o && !s && this.P(t);
   }
@@ -483,13 +483,13 @@ class wt extends R {
     this.element[this.name] = t === p ? void 0 : t;
   }
 }
-const St = A ? A.emptyScript : "";
-class Et extends R {
+const Et = A ? A.emptyScript : "";
+class St extends R {
   constructor() {
     super(...arguments), this.type = 4;
   }
   P(t) {
-    t && t !== p ? this.element.setAttribute(this.name, St) : this.element.removeAttribute(this.name);
+    t && t !== p ? this.element.setAttribute(this.name, Et) : this.element.removeAttribute(this.name);
   }
 }
 class Ct extends R {
@@ -498,7 +498,7 @@ class Ct extends R {
   }
   _$AI(t, e = this) {
     var i;
-    if ((t = (i = S(this, t, e, 0)) !== null && i !== void 0 ? i : p) === w)
+    if ((t = (i = E(this, t, e, 0)) !== null && i !== void 0 ? i : p) === w)
       return;
     const s = this._$AH, r = t === p && s !== p || t.capture !== s.capture || t.once !== s.once || t.passive !== s.passive, o = t !== p && (s === p || r);
     r && this.element.removeEventListener(this.name, this, s), o && this.element.addEventListener(this.name, this, t), this._$AH = t;
@@ -516,7 +516,7 @@ class xt {
     return this._$AM._$AU;
   }
   _$AI(t) {
-    S(this, t);
+    E(this, t);
   }
 }
 const nt = k.litHtmlPolyfillSupport;
@@ -612,12 +612,12 @@ let H = class extends g {
     this.initialized = !1, this.openStatus = !this.openStatus;
   }
   render() {
-    let n = this.openStatus ? "close" : "open", t = m`<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M1.5 3C1.22386 3 1 3.22386 1 3.5C1 3.77614 1.22386 4 1.5 4H13.5C13.7761 4 14 3.77614 14 3.5C14 3.22386 13.7761 3 13.5 3H1.5ZM1 7.5C1 7.22386 1.22386 7 1.5 7H13.5C13.7761 7 14 7.22386 14 7.5C14 7.77614 13.7761 8 13.5 8H1.5C1.22386 8 1 7.77614 1 7.5ZM1 11.5C1 11.2239 1.22386 11 1.5 11H13.5C13.7761 11 14 11.2239 14 11.5C14 11.7761 13.7761 12 13.5 12H1.5C1.22386 12 1 11.7761 1 11.5Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>`, e = m`<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M12.8536 2.85355C13.0488 2.65829 13.0488 2.34171 12.8536 2.14645C12.6583 1.95118 12.3417 1.95118 12.1464 2.14645L7.5 6.79289L2.85355 2.14645C2.65829 1.95118 2.34171 1.95118 2.14645 2.14645C1.95118 2.34171 1.95118 2.65829 2.14645 2.85355L6.79289 7.5L2.14645 12.1464C1.95118 12.3417 1.95118 12.6583 2.14645 12.8536C2.34171 13.0488 2.65829 13.0488 2.85355 12.8536L7.5 8.20711L12.1464 12.8536C12.3417 13.0488 12.6583 13.0488 12.8536 12.8536C13.0488 12.6583 13.0488 12.3417 12.8536 12.1464L8.20711 7.5L12.8536 2.85355Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>`, i = this.openStatus ? e : t;
-    return m`
+    let n = m`<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M1.5 3C1.22386 3 1 3.22386 1 3.5C1 3.77614 1.22386 4 1.5 4H13.5C13.7761 4 14 3.77614 14 3.5C14 3.22386 13.7761 3 13.5 3H1.5ZM1 7.5C1 7.22386 1.22386 7 1.5 7H13.5C13.7761 7 14 7.22386 14 7.5C14 7.77614 13.7761 8 13.5 8H1.5C1.22386 8 1 7.77614 1 7.5ZM1 11.5C1 11.2239 1.22386 11 1.5 11H13.5C13.7761 11 14 11.2239 14 11.5C14 11.7761 13.7761 12 13.5 12H1.5C1.22386 12 1 11.7761 1 11.5Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>`, t = m`<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M12.8536 2.85355C13.0488 2.65829 13.0488 2.34171 12.8536 2.14645C12.6583 1.95118 12.3417 1.95118 12.1464 2.14645L7.5 6.79289L2.85355 2.14645C2.65829 1.95118 2.34171 1.95118 2.14645 2.14645C1.95118 2.34171 1.95118 2.65829 2.14645 2.85355L6.79289 7.5L2.14645 12.1464C1.95118 12.3417 1.95118 12.6583 2.14645 12.8536C2.34171 13.0488 2.65829 13.0488 2.85355 12.8536L7.5 8.20711L12.1464 12.8536C12.3417 13.0488 12.6583 13.0488 12.8536 12.8536C13.0488 12.6583 13.0488 12.3417 12.8536 12.1464L8.20711 7.5L12.8536 2.85355Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>`, e = "open", i = n;
+    return this.openStatus && (e = "close", i = t), m`
     <section>
       <button @click=${this.handleClick} >
         <span class="sr-only">
-          ${n}
+          ${e}
         </span>
           ${i} 
       </button>
