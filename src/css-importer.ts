@@ -1,4 +1,4 @@
-// Import Lit CSS utility and intialization styles.
+// Import Lit CSSResult class and CSS methods.
 import { CSSResult, unsafeCSS } from 'lit';
 
 // Import the CSS common to all web components for possible re-use *inside* the ShadowDOM. Uses ?inline so the CSS is bundled.
