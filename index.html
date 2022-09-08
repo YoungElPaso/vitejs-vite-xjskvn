@@ -33,15 +33,17 @@
       <section>
         <h2>Main Content</h2>
 
-        <!-- Details enhanced with the mds-details custom element using 'is' implementation. -->
-        <details is="mds-details" open>
-          <ul>
-            <li>Foobar</li>
-            <li class="selected">Barfoo</li>
-            <li>Jaroof</li>
-            <li>Snaggleboof</li>
-          </ul>
-        </details>
+        <!-- Details wrapped with the mds-details custom element to add enhanced open/shut behaviours. -->
+        <mds-details>
+          <details>
+            <ul>
+              <li>Foobar</li>
+              <li class="selected">Barfoo</li>
+              <li>Jaroof</li>
+              <li>Snaggleboof</li>
+            </ul>
+          </details>
+        </mds-details>
       </section>
     </div>
   </body>
