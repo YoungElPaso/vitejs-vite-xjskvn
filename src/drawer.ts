@@ -81,14 +81,14 @@ export class DrawerElement extends LitElement {
         position: relative;
         background: white;
         padding: 0.5rem;
-        width: calc(33vw);
+        /* width: calc(33vw);*/
         height: calc(100vh - 1rem);
       }
 
-      :host([openStatus]) {
+      /*:host([openStatus]) {
         overflow: visible;
         animation-play-state: running !important;
-      }
+      }*/
 
       /* Open/close button for drawer. */
       button {
@@ -101,6 +101,11 @@ export class DrawerElement extends LitElement {
         margin: 0;
         background: white;
         border: none;
+      }
+
+      section {
+        background: red;
+        overflow: hidden;
       }
     `,
       // Include shared styles provided by css-importer.

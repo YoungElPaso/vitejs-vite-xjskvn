@@ -9,17 +9,17 @@
   white-space: nowrap;
   width: 1px;
 }
-
+/* 
 mds-drawer:defined {
   animation-name: slide-from-left, fade-in;
   animation-duration: 0.3s, 0.3s;
   animation-play-state: paused, running;
-}
+} */
 
 /* TODO: flesh out initialized styles. See related Codepen.!!!!! */
-mds-drawer[initialized] {
-  /* border: 10px lime solid; */
-}
+/* mds-drawer[initialized] { */
+/* border: 10px lime solid; */
+/* } */
 
 /* Basic fade-in animation. */
 @keyframes fade-in {
@@ -47,7 +47,7 @@ mds-drawer[initialized] {
 
 mds-drawer:not(:defined) {
   /* Should basically just be partaking of 'off-screen' styles. */
-  margin-left: -1000px;
+  /* margin-left: -1000px; */
 
   /* Not defined, so by definition not visible...need to do animations not transition here! */
   /* opacity: 0; */
@@ -58,6 +58,55 @@ mds-drawer:not(:defined) {
 mds-drawer:not(:defined) * {
   display: none;
 }
+
+/* NEW CSS FOR DRAWER! */
+
+mds-drawer {
+  position: relative;
+  /* overflow: visible; */
+}
+
+mds-drawer:defined {
+  animation: fade-in 0.3s;
+}
+
+mds-drawer[initialized] {
+  animation-name: slide-left;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+mds-drawer[openStatus] {
+  animation-name: slide-right;
+}
+
+mds-drawer:not([openStatus]) {
+  animation-name: slide-left;
+}
+
+@keyframes slide-right {
+  from {
+    /* background: green; */
+    width: 0;
+  }
+  to {
+    /* background: red; */
+    width: min(80%, 75vw);
+  }
+}
+
+@keyframes slide-left {
+  from {
+    /* background: red; */
+    width: min(80%, 75vw);
+  }
+  to {
+    /* background: green; */
+    width: 0;
+  }
+}
+
+/* End of new Drawer CSS. */
 
 /* Initial states for mds-mobile-adapted-content based on media-query. */
 @media (min-width: 420px) {
