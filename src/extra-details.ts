@@ -97,6 +97,9 @@ export class ExtraDetails extends LitElement {
   }
 
   static get styles() {
+    // TODO: set these as internal props and calculate on firstUpdate?
+    let initialHeight = 30;
+    let activeHeight = 50;
     return [
       // TODO: set some basic styles, maybe border? Maybe initial height?
       css`
@@ -105,11 +108,13 @@ export class ExtraDetails extends LitElement {
         transition: height 0.2s;
       }
       :host([isActive="inactive"]) {
-        height: 0.51rem;
+        /* replace with initialHeight*/
+        height: ${initialHeight}px;
         background: red;
       }
       :host([isActive="active"]) {
-        height: 5rem;
+        /* replace with activeHeight */
+        height: ${activeHeight}px;
         background: green;
       }
       `,
