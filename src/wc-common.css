@@ -70,11 +70,15 @@ mds-drawer:not(:defined) {
 }
 
 /* TODO: this should probably be overriden by default ol styles in any case so can remove later. */
-mds-extra-details ul {
+mds-extra-details ul,
+mds-extra-details ol {
   margin: 0;
-  padding-left: 1rem;
+  padding-left: 1.5rem;
   padding-top: 0.3rem;
-  list-style-type: none;
+}
+
+mds-extra-details li {
+  margin-bottom: 0.25rem;
 }
 
 /* Make it global? or maybe at least see for anything 'mds-x' */

@@ -149,7 +149,7 @@ export class ExtraDetails extends LitElement {
         height: var(--activeHeight);
       }
       summary {
-        padding: 0.25rem;
+        padding: 0.5rem;
         background: #AAA;
       }
 
