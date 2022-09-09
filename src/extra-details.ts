@@ -139,7 +139,7 @@ export class ExtraDetails extends LitElement {
         transition: height 0.2s;
         background: white;
         padding: 0.5rem;
-        margin: 1rem;
+        margin-bottom: 1rem;
         border-radius: 0.25rem;
       }
       :host([isActive="inactive"]) {

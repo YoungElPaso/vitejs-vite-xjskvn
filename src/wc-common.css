@@ -64,7 +64,7 @@ mds-drawer:not(:defined) {
 }
 @media (max-width: 420px) {
   /* If on mobile, show only mobile-only slot content. */
-  mds-mobile-adapted-content :not([slot='mobile-only']) {
+  mds-mobile-adapted-content > :not([slot='mobile-only']) {
     display: none;
   }
 }

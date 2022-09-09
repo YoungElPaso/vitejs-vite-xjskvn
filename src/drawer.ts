@@ -58,10 +58,8 @@ export class DrawerElement extends LitElement {
           ${buttonLabel}
         </span>
           ${buttonIcon} 
-      </button>
-      
+      </button>      
       <h3>${this.sectionTitle}</h3>
-      ${this.openStatus}
       <slot></slot>
     </section>`;
   }
