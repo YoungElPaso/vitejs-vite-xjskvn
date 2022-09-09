@@ -4,9 +4,10 @@ import {
   html,
   css,
   property,
-  query,
+  state,
   queryAssignedElements,
 } from 'lit-element';
+
 import { sharedWCStyles } from './css-importer';
 
 @customElement('mds-extra-details')
@@ -24,9 +25,14 @@ export class ExtraDetails extends LitElement {
   // TODO: this handler needs to be added to the <summary> tag which is a part of the child markup slotted.
 
   // TODO: need to grab refs to some of the child elements to attach handlers, update attributes etc. Read how to do that!
-  handleClick() {
-    console.log(this._details);
-  }
+  // handleClick() {
+  //   console.log(this._details);
+  // }
+
+  // @state()
+  // protected _initHeight: String | Number = '';
+  // @state()
+  // protected _activeHeight: String | Number = '';
 
   // TODO: also need to add animation to open/close. For that need to compute heights and then transition between them - so dynamically set style based on children? Could calculate on firstUpdate maybe?
 
@@ -35,6 +41,10 @@ export class ExtraDetails extends LitElement {
   // TODO: also need to check if children of details are 'active' if so bubble up an event to set the property? Sure. sounds good.
 
   firstUpdated() {
+    // TODO: replace hardcoded w/ calculated values based on layout:
+    // this._initHeight = 1;
+    // this._activeHeight = 6;
+
     // Add an event listener to handle clicks on the details element and update properties.
     let t = this;
     this.addEventListener('click', function (e) {
@@ -58,8 +68,6 @@ export class ExtraDetails extends LitElement {
     // TODO: move these lines around and make it clear w/ comments how this component is being initialized.
     this._details[0].open = this.isActive == 'active' ? true : false;
 
-    // TODO: also get summary height as initial height for inactive state and use w/ animation with other child elements heights to create 'from' 'to' values.
-
     // Evaluate some stuff about the children and set some props. 1) Set isActive=active if childNodes contain a 'selected' or 'active' class only if isActive is 'inactive' already and the initial value. 2) Get the summary element and get it's height - can use that as initialHeight for animation.
 
     console.log('details', this._details);
@@ -73,6 +81,13 @@ export class ExtraDetails extends LitElement {
     // console.log(activeChild, this.isActive);
     let summaryElement: HTMLElement | null =
       this._details[0].querySelector('summary');
+
+    // TODO: also get summary height as initial height for inactive state and use w/ animation with other child elements heights to create 'from' 'to' values.
+    let h = summaryElement?.offsetHeight;
+    let hh = this?.offsetHeight;
+    hh = hh && h ? hh - h : 100;
+    this.style.setProperty('--initHeight', String(h) + 'px');
+    this.style.setProperty('--activeHeight', String(hh) + 'px');
 
     // If initial state is inactive and there's a summary and there's also an 'active' child element, then open the details by doing a click event.
     if (
@@ -98,8 +113,8 @@ export class ExtraDetails extends LitElement {
 
   static get styles() {
     // TODO: set these as internal props and calculate on firstUpdate?
-    let initialHeight = 30;
-    let activeHeight = 50;
+    // let initialHeight = 30;
+    // let activeHeight = 50;
     return [
       // TODO: set some basic styles, maybe border? Maybe initial height?
       css`
@@ -109,12 +124,12 @@ export class ExtraDetails extends LitElement {
       }
       :host([isActive="inactive"]) {
         /* replace with initialHeight*/
-        height: ${initialHeight}px;
+        height: var(--initHeight);
         background: red;
       }
       :host([isActive="active"]) {
         /* replace with activeHeight */
-        height: ${activeHeight}px;
+        height: var(--activeHeight);
         background: green;
       }
       `,
