@@ -69,7 +69,7 @@ mds-drawer:not(:defined) {
   }
 }
 
-/* TODO: this should probably be overriden by default ol styles in any case so can remove later. */
+/* TODO: this should probably be overriden by default ol styles in any case so can remove later possibly. */
 mds-extra-details ul,
 mds-extra-details ol {
   margin: 0;
