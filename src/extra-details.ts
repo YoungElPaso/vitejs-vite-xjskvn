@@ -4,6 +4,7 @@ import {
   html,
   css,
   property,
+  query,
   queryAssignedElements,
 } from 'lit-element';
 
@@ -18,7 +19,8 @@ export class ExtraDetails extends LitElement {
   // TODO: tie this to details 'open' attr by passing down?
 
   // Get the child details element.
-  @queryAssignedElements({ selector: 'details' })
+  // @queryAssignedElements({ selector: 'details' })
+  @query('details')
   _details!: Array<HTMLDetailsElement>;
 
   // TODO: this handler needs to be added to the <summary> tag which is a part of the child markup slotted.
@@ -50,10 +52,12 @@ export class ExtraDetails extends LitElement {
       // Need to wrap in requestAnimationFrame to get the proper value of details.open after it's changed!
       // TODO: unsure this makes sense...
       requestAnimationFrame(function () {
-        t.isActive = t._details[0].open ? 'active' : 'inactive';
-        console.log(t._details[0].open);
+        t.isActive = t._details.open ? 'active' : 'inactive';
+        console.log(t._details.open);
       });
     });
+
+    // TODO: post-refactor, fix type errors on elements!
 
     // super.firstUpdated();
     // console.log(this._details[0]);
@@ -65,7 +69,7 @@ export class ExtraDetails extends LitElement {
 
     // TODO: replace with a summary click. Close the circle. Make it all event based? Hmmm, maybe not...No, prop should go down, click event should go up.
     // TODO: move these lines around and make it clear w/ comments how this component is being initialized.
-    this._details[0].open = this.isActive == 'active' ? true : false;
+    this._details.open = this.isActive == 'active' ? true : false;
 
     // Evaluate some stuff about the children and set some props. 1) Set isActive=active if childNodes contain a 'selected' or 'active' class only if isActive is 'inactive' already and the initial value. 2) Get the summary element and get it's height - can use that as initialHeight for animation.
 
@@ -73,16 +77,16 @@ export class ExtraDetails extends LitElement {
 
     // See if there are any active children.
     let activeChild: NodeList | null =
-      this._details[0].querySelectorAll('.selected, .active');
+      this._details.querySelectorAll('.selected, .active');
 
     // TODO: this should probably be replaced by an event listener and instead I should simulate a click on the summary - that will keep the details open attr and isActive in sync I think and take advantage of event bubbling from child on up, while we set intial state from parent down!
     // this.isActive = activeChild ? 'active' : 'inactive';
     // console.log(activeChild, this.isActive);
     let summaryElement: HTMLElement | null =
-      this._details[0].querySelector('summary');
+      this._details.querySelector('summary');
 
-    let listElement: HTMLUListElement | null =
-      this._details[0].querySelector('ul');
+    let listElement: HTMLDivElement | null =
+      this._details.querySelector('div');
     // TODO: also get summary height as initial height for inactive state and use w/ animation with other child elements heights to create 'from' 'to' values.
     let h = summaryElement?.clientHeight;
     let hh = listElement?.clientHeight;
@@ -113,8 +117,12 @@ export class ExtraDetails extends LitElement {
     // OK, cool, so can pass prop down via attribute like this!? TODO: this has to be in another lifecycle hook cause _details is undefined here.
     // this._details[0].open = this.isActive == 'active' ? true : false;
     return html`
-    <slot>
-    </slot>
+    <details>
+      <summary>Title</summary>
+        <div>
+          <slot>
+          </slot>
+        </div>
     </details>`;
   }
 
