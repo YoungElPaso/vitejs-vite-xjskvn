@@ -4,7 +4,6 @@ import {
   html,
   css,
   property,
-  state,
   queryAssignedElements,
 } from 'lit-element';
 
@@ -87,7 +86,10 @@ export class ExtraDetails extends LitElement {
     // TODO: also get summary height as initial height for inactive state and use w/ animation with other child elements heights to create 'from' 'to' values.
     let h = summaryElement?.clientHeight;
     let hh = listElement?.clientHeight;
-    let mm = listElement?.style.marginTop;
+    // TODO: account for margins on listElement...
+
+    let mm = listElement?.style.marginBlockStart;
+    console.log('mm', mm);
     hh = hh && h ? hh + h : 100;
     this.style.setProperty('--initHeight', String(h) + 'px');
     this.style.setProperty('--activeHeight', String(hh) + 'px');

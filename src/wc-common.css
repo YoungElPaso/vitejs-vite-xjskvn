@@ -68,3 +68,8 @@ mds-drawer:not(:defined) {
     display: none;
   }
 }
+
+mds-extra-details ul {
+  background: pink;
+  margin: 0;
+}
