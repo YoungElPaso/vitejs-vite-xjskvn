@@ -14,6 +14,7 @@ import { sharedWCStyles } from './css-importer';
 export class ExtraDetails extends LitElement {
   // isActive reflected property to allow manual setting of isActive or not; defaults to 'inactive', can be 'active'.
   // TODO: should this just be a boolean? Probably. Allows access to set open/closed for child from outside easily and declaratively on parent, enables accordion type behaviour based on higher state (e.g. open one detail, close others etc) and composing together and by checking child elements for 'activity' and setting parent open/closed.
+  @property({ type: String }) summary: String | null = null;
   @property({ type: String, reflect: true }) isActive: String =
     'inactive' || 'active';
   // TODO: tie this to details 'open' attr by passing down?
@@ -118,7 +119,7 @@ export class ExtraDetails extends LitElement {
     // this._details[0].open = this.isActive == 'active' ? true : false;
     return html`
     <details>
-      <summary>Title</summary>
+      <summary>${this.summary}</summary>
         <div>
           <slot>
           </slot>
