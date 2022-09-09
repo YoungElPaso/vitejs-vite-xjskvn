@@ -10,7 +10,7 @@
   padding: 0 2.5rem;
   background: #eee;
   flex-grow: 1;
-  min-width: 300px;
+  /* min-width: 300px; */
 }
 
 .list-style-none {
