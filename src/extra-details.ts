@@ -82,10 +82,13 @@ export class ExtraDetails extends LitElement {
     let summaryElement: HTMLElement | null =
       this._details[0].querySelector('summary');
 
+    let listElement: HTMLUListElement | null =
+      this._details[0].querySelector('ul');
     // TODO: also get summary height as initial height for inactive state and use w/ animation with other child elements heights to create 'from' 'to' values.
-    let h = summaryElement?.offsetHeight;
-    let hh = this?.offsetHeight;
-    hh = hh && h ? hh - h : 100;
+    let h = summaryElement?.clientHeight;
+    let hh = listElement?.clientHeight;
+    let mm = listElement?.style.marginTop;
+    hh = hh && h ? hh + h : 100;
     this.style.setProperty('--initHeight', String(h) + 'px');
     this.style.setProperty('--activeHeight', String(hh) + 'px');
 
