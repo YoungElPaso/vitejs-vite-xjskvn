@@ -137,8 +137,9 @@ export class ExtraDetails extends LitElement {
         overflow: hidden;
         transition: height 0.2s;
         background: white;
-        padding: 1rem;
+        padding: 0.5rem;
         margin: 1rem;
+        border-radius: 0.25rem;
       }
       :host([isActive="inactive"]) {
         height: var(--initHeight);
@@ -148,7 +149,12 @@ export class ExtraDetails extends LitElement {
       }
       summary {
         padding: 0.25rem;
-        background: red;
+        background: #AAA;
+      }
+
+      div {
+        background: lightgreen;
+        padding-bottom: 0.5rem
       }
       `,
       sharedWCStyles,
