@@ -55,33 +55,40 @@ mds-drawer:not(:defined) {
   /* background: red; */
 }
 /* Arguably Drawer stuff should be hidden entirely until element is defined. */
-mds-drawer:not(:defined) * {
+mds-drawer:not(:defined) {
   display: none;
+  width: 0;
+  overflow: hidden;
+}
+
+mds-drawer:not(:defined) section {
+  width: 100%;
 }
 
 /* NEW CSS FOR DRAWER! */
 
-mds-drawer {
-  position: relative;
-  /* overflow: visible; */
-}
+/* TODO: think I need to refocus away from keyframe animations - too complex, just use --vars and transition like w/ Details - a bit easier to handle and use on interior <section> style width: bonus can do everything but fade inside the component CSS. */
+/* mds-drawer { */
+/* position: relative; */
+/* overflow: visible; */
+/* } */
 
 mds-drawer:defined {
   animation: fade-in 0.3s;
 }
 
 mds-drawer[initialized] {
-  animation-name: slide-left;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
+  /* animation-name: slide-left; */
+  /* animation-duration: 1s; */
+  /* animation-fill-mode: forwards; */
 }
 
 mds-drawer[openStatus] {
-  animation-name: slide-right;
+  /* animation-name: slide-right; */
 }
 
 mds-drawer:not([openStatus]) {
-  animation-name: slide-left;
+  /* animation-name: slide-left; */
 }
 
 @keyframes slide-right {
