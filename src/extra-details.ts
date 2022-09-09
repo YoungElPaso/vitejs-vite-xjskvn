@@ -88,11 +88,13 @@ export class ExtraDetails extends LitElement {
     let hh = listElement?.clientHeight;
     // TODO: account for margins on listElement...
 
-    let mm = listElement?.style.marginBlockStart;
-    console.log('mm', mm);
+    // let mm = listElement?.style.marginBlockStart;
+    // console.log('mm', mm);
     hh = hh && h ? hh + h : 100;
     this.style.setProperty('--initHeight', String(h) + 'px');
     this.style.setProperty('--activeHeight', String(hh) + 'px');
+
+    // TOOD: all of the calculations above and dimensions and stuff gets very hard to be sure of if we allow any children and dont include the details parts in the ShadowDOM - passing any content into a slot means trying to suss out parts and calculating the margins etc. Probably should make this a lot simpler and have the component itself define most of the details parts and wrap slotted content in a div so we can easily ascertain the height of that and add to summary which we can know easily, without querying slotted content to form the total activeHeight etc. Works for now tho! YAy!
 
     // If initial state is inactive and there's a summary and there's also an 'active' child element, then open the details by doing a click event.
     if (
