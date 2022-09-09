@@ -55,6 +55,7 @@ mds-drawer:not(:defined) {
   /* background: red; */
 }
 /* Arguably Drawer stuff should be hidden entirely until element is defined. */
+/* Back to getting some nasty FOUC on the Drawer again, so need to work on the animation/transition etc */
 mds-drawer:not(:defined) {
   display: none;
   width: 0;
