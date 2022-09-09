@@ -136,16 +136,19 @@ export class ExtraDetails extends LitElement {
       :host {display: block;
         overflow: hidden;
         transition: height 0.2s;
+        background: white;
+        padding: 1rem;
+        margin: 1rem;
       }
       :host([isActive="inactive"]) {
-        /* replace with initialHeight*/
         height: var(--initHeight);
-        background: red;
       }
       :host([isActive="active"]) {
-        /* replace with activeHeight */
         height: var(--activeHeight);
-        background: green;
+      }
+      summary {
+        padding: 0.25rem;
+        background: red;
       }
       `,
       sharedWCStyles,
