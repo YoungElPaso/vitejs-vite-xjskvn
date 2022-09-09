@@ -69,8 +69,19 @@ mds-drawer:not(:defined) {
   }
 }
 
-/* mds-extra-details ul {
+mds-extra-details ul {
   background: pink;
   margin: 0;
-} */
+}
+
+mds-extra-details:not(:defined) {
+  height: 1rem;
+  overflow: hidden;
+}
+
+mds-extra-details[isactive='inactive'] ul {
+  /* background: purple;
+  padding: 1rem; */
+  display: none;
+}
 /* TODO: now that more of details comp is rendered in ShadowDOM, getting FOUC so need init styles... Fade in prob. */
