@@ -96,6 +96,8 @@ export class ExtraDetails extends LitElement {
     // let mm = listElement?.style.marginBlockStart;
     // console.log('mm', mm);
     hh = hh && h ? hh + h : 100;
+
+    // Edge case, but this should probably be re-calculated on window resize etc? Maybe a todo...
     this.style.setProperty('--initHeight', String(h) + 'px');
     this.style.setProperty('--activeHeight', String(hh) + 'px');
 

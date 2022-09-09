@@ -54,6 +54,10 @@ mds-drawer:not(:defined) {
   /* transition: opacity 8s ease-in; */
   /* background: red; */
 }
+/* Arguably Drawer stuff should be hidden entirely until element is defined. */
+mds-drawer:not(:defined) * {
+  display: none;
+}
 
 /* Initial states for mds-mobile-adapted-content based on media-query. */
 @media (min-width: 420px) {
