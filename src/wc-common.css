@@ -126,9 +126,17 @@ mds-drawer:not([openStatus]) {
   }
 }
 @media (max-width: 420px) {
+  mds-mobile-adapted-content:defined {
+    animation: fade-in 0.5s;
+  }
   /* If on mobile, show only mobile-only slot content. */
-  mds-mobile-adapted-content > :not([slot='mobile-only']) {
+  /* TODO: fix this mess! */
+  mds-mobile-adapted-content:not(:defined) *,
+  mds-mobile-adapted-content * {
     display: none;
+  }
+  mds-mobile-adapted-content:not(:defined) [slot='mobile-only'] {
+    display: block;
   }
 }
 
