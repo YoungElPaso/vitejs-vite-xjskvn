@@ -17,7 +17,7 @@ export class DrawerElement extends LitElement {
   // A property for a section title for the drawer.
   @property({ type: String }) sectionTitle: String = '';
 
-  // Handle button click.
+  // Handle button click to open/close drawer.
   handleClick() {
 
     // Set openStatus to inverse of previous value.
