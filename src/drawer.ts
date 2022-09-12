@@ -17,14 +17,8 @@ export class DrawerElement extends LitElement {
   // A property for a section title for the drawer.
   @property({ type: String }) sectionTitle: String = '';
 
-  // A property to specify when the component is 'ready' and reflected for CSS via attribute on element. Need to know if component is fully bootstrapped so it can be styled as such.
-  @property({ type: Boolean, reflect: true })
-  initialized: Boolean = false;
-
   // Handle button click.
   handleClick() {
-    // Technically this could happen here, or only once at another time - just need to turn the initialized attribute off, since the component is now in use and CSS should reflect that.
-    this.initialized = false;
 
     // Set openStatus to inverse of previous value.
     this.openStatus = !this.openStatus;
@@ -66,13 +60,6 @@ export class DrawerElement extends LitElement {
     </section>`;
   }
 
-  // Do some initialization stuff when component 'connects' to DOM.
-  connectedCallback() {
-    super.connectedCallback();
-    // Set initialized to true for use in CSS when element is connected to DOM.
-    this.initialized = true;
-  }
-
   // Set styles.
   static get styles() {
     return [
@@ -92,7 +79,7 @@ export class DrawerElement extends LitElement {
         --drawer-padding: 0.5rem;
       }
       
-      /* For active facet details el. allow an optional prop to set an 'active-child' selector string - so can have differing implementations. */
+      /* For active facet details el. allow an optional prop to set an 'active-child' selector string - so can have differing implementations per element! */
 
       /* Open/close button for drawer. */
       button {
