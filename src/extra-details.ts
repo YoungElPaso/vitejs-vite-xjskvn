@@ -22,7 +22,7 @@ export class ExtraDetails extends LitElement {
   // Get the child details element.
   // @queryAssignedElements({ selector: 'details' })
   @query('details')
-  _details!: Array<HTMLDetailsElement>;
+  _details!: HTMLDetailsElement;
 
   // TODO: this handler needs to be added to the <summary> tag which is a part of the child markup slotted.
 
@@ -42,13 +42,13 @@ export class ExtraDetails extends LitElement {
 
 
   // Listen for widow resize and adjust active height variable.
-  handleWindowResize(component) {
+  handleWindowResize(component:ExtraDetails) {
     console.log(component)
     let summaryElement: HTMLElement | null =
-      component._details.querySelector('summary');
+      component?._details.querySelector('summary');
 
     let listElement: HTMLDivElement | null =
-      component._details.querySelector('div');
+      component?._details.querySelector('div');
 
     let h = summaryElement?.clientHeight;
     let hh = listElement?.clientHeight;
@@ -108,7 +108,7 @@ export class ExtraDetails extends LitElement {
     console.log('details', this._details);
 
     // See if there are any active children.
-    let activeChild: NodeList | null =
+    let activeChild: NodeList =
       this._details.querySelectorAll('.selected, .active');
 
     // TODO: this should probably be replaced by an event listener and instead I should simulate a click on the summary - that will keep the details open attr and isActive in sync I think and take advantage of event bubbling from child on up, while we set intial state from parent down!

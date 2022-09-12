@@ -118,6 +118,14 @@ mds-drawer:not([openStatus]) {
 
 /* End of new Drawer CSS. */
 
+/* TODO: use templates and slots here instead!?Or with? */
+mds-mobile-adapted-content:not(:defined) > *:not([slot='mobile-only']) {
+  visibility: hidden;
+}
+
+mds-mobile-adapted-content:defined {
+  animation: fade-in 0.5s;
+}
 /* Initial states for mds-mobile-adapted-content based on media-query. */
 @media (min-width: 420px) {
   /* If on desktop, hide all mobile-only slot content. */
@@ -126,17 +134,14 @@ mds-drawer:not([openStatus]) {
   }
 }
 @media (max-width: 420px) {
-  mds-mobile-adapted-content:defined {
-    animation: fade-in 0.5s;
-  }
   /* If on mobile, show only mobile-only slot content. */
   /* TODO: fix this mess! */
   mds-mobile-adapted-content:not(:defined) *,
   mds-mobile-adapted-content * {
-    display: none;
+    /* display: none; */
   }
   mds-mobile-adapted-content:not(:defined) [slot='mobile-only'] {
-    display: block;
+    /* display: block; */
   }
 }
 
