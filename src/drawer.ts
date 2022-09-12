@@ -58,9 +58,11 @@ export class DrawerElement extends LitElement {
           ${buttonLabel}
         </span>
           ${buttonIcon} 
-      </button>      
-      <h3>${this.sectionTitle}</h3>
-      <slot></slot>
+      </button>
+      <div class="drawer-contents">      
+        <h3>${this.sectionTitle}</h3>
+        <slot></slot>
+      </div>
     </section>`;
   }
 
@@ -80,22 +82,19 @@ export class DrawerElement extends LitElement {
         display: flex;
         position: relative;
         background: white;
-        /* width: calc(33vw);*/
         height: calc(100vh - 1rem);
+        --button-width: 2rem;
+        --drawer-width: calc(100vw - 4*var(--button-width));
+        --drawer-padding: 0.5rem;
       }
-      
-      /*:host([openStatus]) {
-        overflow: visible;
-        animation-play-state: running !important;
-      }*/
       
       /* Open/close button for drawer. */
       button {
         position: absolute;
         top: 0;
-        right: -2rem;
-        width: 2rem;
-        height: 2rem;
+        right: calc(-1* var(--button-width));
+        width: var(--button-width);
+        height: var(--button-width);
         padding: 0;
         margin: 0;
         background: white;
@@ -108,8 +107,13 @@ export class DrawerElement extends LitElement {
         transition: width 0.3s;
       }
       :host([openstatus]) section {
-        width: 80vw;
-        padding: 0.25rem;
+        width: var(--drawer-width);
+      }
+      
+      .drawer-contents {
+        background: hotpink;
+        padding: var(--drawer-padding);
+        width: calc(var(--drawer-width) - 2*var(--drawer-padding));
       }
       `,
       // Include shared styles provided by css-importer.
