@@ -74,6 +74,8 @@ mds-drawer:not(:defined) section {
 /* overflow: visible; */
 /* } */
 
+/* TODO: clean up this whole file! Probably lots not required anymore! */
+
 mds-drawer:defined {
   animation: fade-in 0.3s;
 }
