@@ -19,7 +19,7 @@
   <body>
     <mds-mobile-adapted-content>
       <h1 slot="mobile-only">This is visible on mobile only</h1>
-      <h2>This is visible only on desktop</h2>
+      <h2 slot="desktop">This is visible only on desktop</h2>
     </mds-mobile-adapted-content>
     <div id="container">
       <!-- Declaratively specifies which content should be displayed on mobile, vs desktop; rather than merely hide w/ CSS media-queries. Allows content to be moved around declaratively in HTML rather than .append() or whatever purely in JS! -->
@@ -34,7 +34,9 @@
             </ul>
           </mds-extra-details>
         </mds-drawer>
-        <template>Some menu not in drawer. Or could be anything else!</template>
+        <div slot="desktop">
+          Some menu not in drawer. Or could be anything else!
+        </div>
       </mds-mobile-adapted-content>
 
       <section class="main">
