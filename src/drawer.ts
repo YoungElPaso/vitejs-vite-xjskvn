@@ -72,13 +72,13 @@ export class DrawerElement extends LitElement {
         height: 100vh;
         /* Set some basic styling variables for parts of the drawer.*/
         --button-width: 2rem;
-        /* Drawer width is relative to button width; allows for space proportionate to button width. */
+        /* Drawer width is relative to button width; allows for space proportionate to button width while also taking up most of the viewport width. */
         --drawer-width: calc(100vw - 4*var(--button-width));
         /* Basic padding for contents. */
         --drawer-padding: 0.5rem;
       }
       
-      /* For active facet details el. allow an optional prop to set an 'active-child' selector string - so can have differing implementations per element! */
+      /* TODO: For active facet details el. allow an optional prop to set an 'active-child' selector string - so can have differing implementations per element! */
 
       /* Open/close button for drawer. */
       button {
@@ -96,10 +96,9 @@ export class DrawerElement extends LitElement {
       
       /* Defines 'root' of drawer and the element that 'opens'.*/
       section {
-        overflow: hidden;
-        /* Margin-left initially set to 0 - so 'closed'. */
+        /* Margin-left initially set to negative drawer-width, so 'closed'. */
         margin-left: calc(-1 * var(--drawer-width));
-        /* Use transition for animation on open/shut. */
+        /* Use transition for animation on open/shut states. */
         transition: margin-left var(--animation-duration-fast);
       }
       /* When open, reset margin-left. */
