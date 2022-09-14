@@ -19,7 +19,6 @@ export class DrawerElement extends LitElement {
 
   // Handle button click to open/close drawer.
   handleClick() {
-
     // Set openStatus to inverse of previous value.
     this.openStatus = !this.openStatus;
   }
@@ -101,7 +100,7 @@ export class DrawerElement extends LitElement {
         /* Width initially set to 0 - so 'closed'. */
         width: 0;
         /* Use transition for animation. */
-        transition: width 0.3s;
+        transition: width var(--animation-duration-fast);
       }
       /* When open, set width. */
       :host([openstatus]) section {

@@ -172,11 +172,12 @@ export class ExtraDetails extends LitElement {
       css`
       :host {display: block;
         overflow: hidden;
-        transition: height 0.2s;
+        transition: height var(--animation-duration-fast);
         background: white;
         padding: 0.5rem;
         margin-bottom: 1rem;
         border-radius: 0.25rem;
+        border: 1px #BBB solid;
       }
       :host([isActive="inactive"]) {
         height: var(--initHeight);
@@ -186,11 +187,10 @@ export class ExtraDetails extends LitElement {
       }
       summary {
         padding: 0.5rem;
-        background: #AAA;
+        font-weight: bold;
       }
 
       div {
-        background: lightgreen;
         padding-bottom: 0.5rem
       }
       `,
