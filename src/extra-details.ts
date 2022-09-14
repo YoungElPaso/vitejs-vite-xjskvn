@@ -108,8 +108,6 @@ export class ExtraDetails extends LitElement {
 
     // Evaluate some stuff about the children and set some props. 1) Set isActive=active if childNodes contain a 'selected' or 'active' class only if isActive is 'inactive' already and the initial value. 2) Get the summary element and get it's height - can use that as initialHeight for animation.
 
-    console.log('details', this._details);
-
     // See if there are any active children.
     // TODO: since this selector string could be totally variable, allow it to be set as prop/attribute.
     let activeChild: NodeList =
@@ -137,7 +135,7 @@ export class ExtraDetails extends LitElement {
 
     // TOOD: all of the calculations above and dimensions and stuff gets very hard to be sure of if we allow any children and dont include the details parts in the ShadowDOM - passing any content into a slot means trying to suss out parts and calculating the margins etc. Probably should make this a lot simpler and have the component itself define most of the details parts and wrap slotted content in a div so we can easily ascertain the height of that and add to summary which we can know easily, without querying slotted content to form the total activeHeight etc. Works for now tho! YAy!
 
-    // If initial state is inactive and there's a summary and there's also an 'active' child element, then open the details by doing a click event.
+    // If initial state is inactive and there's a summary and there's also an 'active' child element, then open the details by firing off a click.
     if (
       this.isActive == 'inactive' &&
       activeChild.length > 0 &&
@@ -151,8 +149,6 @@ export class ExtraDetails extends LitElement {
   // TODO: scrap the onclick stuff? Details already handles that? Can just hook into attribute changing there and bubble up event? Or just listen to that event at a higher level? Probably the better way to go! Then just need a way to pass down prop...probably can do w/ firstUpdated?
 
   render() {
-    // OK, cool, so can pass prop down via attribute like this!? TODO: this has to be in another lifecycle hook cause _details is undefined here.
-    // this._details[0].open = this.isActive == 'active' ? true : false;
     return html`
     <details>
       <summary>${this.summary}</summary>
@@ -164,24 +160,23 @@ export class ExtraDetails extends LitElement {
   }
 
   static get styles() {
-    // TODO: set these as internal props and calculate on firstUpdate?
-    // let initialHeight = 30;
-    // let activeHeight = 50;
     return [
-      // TODO: set some basic styles, maybe border? Maybe initial height?
       css`
-      :host {display: block;
+      :host {
+        display: block;
         overflow: hidden;
-        transition: height var(--animation-duration-fast);
         background: white;
         padding: 0.5rem;
         margin-bottom: 1rem;
         border-radius: 0.25rem;
         border: 1px #BBB solid;
+        transition: height var(--animation-duration-fast);
       }
+      /* Set initial height to initHeight variable. */
       :host([isActive="inactive"]) {
         height: var(--initHeight);
       }
+      /* Set height when active (open) to activeHeight variable. */
       :host([isActive="active"]) {
         height: var(--activeHeight);
       }
@@ -189,7 +184,6 @@ export class ExtraDetails extends LitElement {
         padding: 0.5rem;
         font-weight: bold;
       }
-
       div {
         padding-bottom: 0.5rem
       }
