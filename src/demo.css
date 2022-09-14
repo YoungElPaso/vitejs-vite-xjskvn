@@ -22,3 +22,15 @@
   padding: 0.5rem;
   border-bottom: 1px #aaa solid;
 }
+
+/* TODO: this should probably be overriden by default ol styles in any case so can remove later possibly. */
+mds-extra-details ul,
+mds-extra-details ol {
+  margin: 0;
+  padding-left: 1.5rem;
+  padding-top: 0.3rem;
+}
+
+mds-extra-details li {
+  margin-bottom: 0.25rem;
+}
