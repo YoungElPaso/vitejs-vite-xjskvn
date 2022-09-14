@@ -74,6 +74,10 @@ export class ExtraDetails extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    // TODO: try to find *earliest* possible moment to get details to inspect for active children!
+    console.log(this._details);
+    // TODO: inspect this to see about slotted content and children etc...
+    console.log('connected:', this);
     let t = this;
     window.addEventListener(
       'resize',
@@ -164,7 +168,7 @@ export class ExtraDetails extends LitElement {
       // TODO: this is cool and works, but the question is whether we can set the 'open' attr. on the details from the get go, first render so that it's open right away when 1st rendered rather than triggering another one.
       summaryElement.click();
 
-      // TODO: this would be good but probably needs to be in another lifecycle hook so the attributes/props are set *before* first rendering. Hmmm, or is simply because the attribute was set then changed in the one case but not the other? Probably...
+      // TODO: this would be good but probably needs to be in another lifecycle hook so the attributes/props are set *before* first rendering. Hmmm, or is simply because the attribute was set then changed in the one case but not the other? Probably... Yeah, probably need to set on willUpdate or maybe try connected callback again...
       // this._details.open = true;
       // this.isActive = true;
     }
