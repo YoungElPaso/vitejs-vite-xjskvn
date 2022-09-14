@@ -1,5 +1,11 @@
-/* Screen-reader only utility. */
+/* Shared utilities and other styles common to all web components. Includes some variables, utilities and initial states for web components.*/
 
+/* Variables. */
+:root {
+  --animation-duration: 0.6s;
+}
+
+/* Screen-reader only utility. */
 .sr-only:not(:focus):not(:active) {
   clip: rect(0 0 0 0);
   clip-path: inset(100%);
@@ -20,36 +26,21 @@
   }
 }
 
-/* Arguably Drawer stuff should be hidden entirely until element is defined. */
+/* Drawer component.*/
+/* Drawer should be hidden entirely until element is defined - it's initial state is totally hidden. */
 mds-drawer:not(:defined) {
   display: none;
-  width: 0;
-  overflow: hidden;
 }
 
-mds-drawer:not(:defined) section {
-  /* TODO: is this still required? */
-  /* width: 100%; */
-}
-
-/* NEW CSS FOR DRAWER! */
-
-/* TODO: think I need to refocus away from keyframe animations - too complex, just use --vars and transition like w/ Details - a bit easier to handle and use on interior <section> style width: bonus can do everything but fade inside the component CSS. */
-/* mds-drawer { */
-/* position: relative; */
-/* overflow: visible; */
-/* } */
-
-/* TODO: clean up this whole file! Probably lots not required anymore! */
-
+/* Animate with fade-in when defined. */
 mds-drawer:defined {
-  animation: fade-in 0.3s;
+  animation: fade-in var(--animation-duration);
 }
 
-/* End of new Drawer CSS. */
-
+/* Mobile adapted content component. */
+/* Animate with fade-in when defined. */
 mds-mobile-adapted-content:defined {
-  animation: fade-in 0.5s;
+  animation: fade-in var(--animation-duration);
 }
 /* Initial states for mds-mobile-adapted-content based on media-query. */
 @media (min-width: 420px) {
@@ -65,11 +56,11 @@ mds-mobile-adapted-content:defined {
   }
 }
 
-/* Make it global? or maybe at least see for anything 'mds-x' */
+/* Extra-details component. */
 mds-extra-details:defined {
-  animation-name: fade-in;
-  animation-duration: 0.5s;
+  animation: fade-in var(--animation-duration);
 }
+/* Hide extra-details children visually for until defined. */
 mds-extra-details:not(:defined) * {
   visibility: hidden;
 }
