@@ -97,14 +97,14 @@ export class DrawerElement extends LitElement {
       /* Defines 'root' of drawer and the element that 'opens'.*/
       section {
         overflow: hidden;
-        /* Width initially set to 0 - so 'closed'. */
-        width: 0;
-        /* Use transition for animation. */
-        transition: width var(--animation-duration-fast);
+        /* Margin-left initially set to 0 - so 'closed'. */
+        margin-left: calc(-1 * var(--drawer-width));
+        /* Use transition for animation on open/shut. */
+        transition: margin-left var(--animation-duration-fast);
       }
-      /* When open, set width. */
+      /* When open, reset margin-left. */
       :host([openstatus]) section {
-        width: var(--drawer-width);
+        margin-left: 0;
       }
       
       /* Holds main contents of drawer.*/
