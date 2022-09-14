@@ -5,6 +5,7 @@ import {
   css,
   property,
   query,
+  queryAssignedElements,
 } from 'lit-element';
 import { sharedWCStyles } from './css-importer';
 
@@ -14,15 +15,22 @@ import { sharedWCStyles } from './css-importer';
 export class ExtraDetails extends LitElement {
   // isActive reflected property to allow manual setting of isActive or not; defaults to 'inactive', can be 'active'.
   // TODO: should this just be a boolean? Probably. Allows access to set open/closed for child from outside easily and declaratively on parent, enables accordion type behaviour based on higher state (e.g. open one detail, close others etc) and composing together and by checking child elements for 'activity' and setting parent open/closed.
+
+  // Property for summary string.
   @property({ type: String }) summary: String | null = null;
-  @property({ type: String, reflect: true }) isActive: String =
-    'inactive' || 'active';
+
+  // Property for active state.
+  @property({ type: Boolean, reflect: true }) isActive: Boolean = false;
   // TODO: tie this to details 'open' attr by passing down?
 
   // Get the child details element.
   // @queryAssignedElements({ selector: 'details' })
   @query('details')
   _details!: HTMLDetailsElement;
+
+  // Get the slotted children elements.
+  @queryAssignedElements({ selector: '*' })
+  _slottedElements!: Array<HTMLElement>;
 
   // TODO: this handler needs to be added to the <summary> tag which is a part of the child markup slotted.
 
@@ -87,7 +95,7 @@ export class ExtraDetails extends LitElement {
       // Need to wrap in requestAnimationFrame to get the proper value of details.open after it's changed!
       // TODO: unsure this makes sense...
       requestAnimationFrame(function () {
-        t.isActive = t._details.open ? 'active' : 'inactive';
+        t.isActive = t._details.open;
         console.log(t._details.open);
       });
     });
@@ -104,15 +112,28 @@ export class ExtraDetails extends LitElement {
 
     // TODO: replace with a summary click. Close the circle. Make it all event based? Hmmm, maybe not...No, prop should go down, click event should go up.
     // TODO: move these lines around and make it clear w/ comments how this component is being initialized.
-    this._details.open = this.isActive == 'active' ? true : false;
+    this._details.open = this.isActive === true ? true : false;
 
     // Evaluate some stuff about the children and set some props. 1) Set isActive=active if childNodes contain a 'selected' or 'active' class only if isActive is 'inactive' already and the initial value. 2) Get the summary element and get it's height - can use that as initialHeight for animation.
 
     // See if there are any active children.
     // TODO: since this selector string could be totally variable, allow it to be set as prop/attribute.
-    let activeChild: NodeList =
-      this._details.querySelectorAll('.selected, .active');
+    // let activeChild: NodeList =
+    // this._details.querySelectorAll('.selected, .active');
+    // console.log('active children: ', activeChild.length);
+    // console.log(this._slottedElements);
+    // let activeChild: Boolean = false;
+    // this._slottedElements.map(function (e) {
+    //   console.log(e.querySelectorAll('.selected'));
+    // });
 
+    let activeChild = this._slottedElements.filter(function (e) {
+      return e.querySelectorAll('.selected, .active').length > 0;
+    });
+    // this._slottedElements.forEach(function (e) {
+    //   activeChild = e.querySelectorAll('.selected').length > 0 ? true : false;
+    //   break;
+    // });
     // TODO: this should probably be replaced by an event listener and instead I should simulate a click on the summary - that will keep the details open attr and isActive in sync I think and take advantage of event bubbling from child on up, while we set intial state from parent down!
     // this.isActive = activeChild ? 'active' : 'inactive';
     // console.log(activeChild, this.isActive);
@@ -135,14 +156,17 @@ export class ExtraDetails extends LitElement {
 
     // TOOD: all of the calculations above and dimensions and stuff gets very hard to be sure of if we allow any children and dont include the details parts in the ShadowDOM - passing any content into a slot means trying to suss out parts and calculating the margins etc. Probably should make this a lot simpler and have the component itself define most of the details parts and wrap slotted content in a div so we can easily ascertain the height of that and add to summary which we can know easily, without querying slotted content to form the total activeHeight etc. Works for now tho! YAy!
 
+    // console.log('active or not:', activeChild);
+
     // If initial state is inactive and there's a summary and there's also an 'active' child element, then open the details by firing off a click.
-    if (
-      this.isActive == 'inactive' &&
-      activeChild.length > 0 &&
-      summaryElement
-    ) {
+    if (!this.isActive && activeChild.length > 0 && summaryElement) {
       console.log('sumEl', summaryElement);
+      // TODO: this is cool and works, but the question is whether we can set the 'open' attr. on the details from the get go, first render so that it's open right away when 1st rendered rather than triggering another one.
       summaryElement.click();
+
+      // TODO: this would be good but probably needs to be in another lifecycle hook so the attributes/props are set *before* first rendering. Hmmm, or is simply because the attribute was set then changed in the one case but not the other? Probably...
+      // this._details.open = true;
+      // this.isActive = true;
     }
   }
 
@@ -171,13 +195,11 @@ export class ExtraDetails extends LitElement {
         border-radius: 0.25rem;
         border: 1px #BBB solid;
         transition: height var(--animation-duration-fast);
-      }
-      /* Set initial height to initHeight variable. */
-      :host([isActive="inactive"]) {
+        /* Set initial height to initHeight variable. */
         height: var(--initHeight);
       }
-      /* Set height when active (open) to activeHeight variable. */
-      :host([isActive="active"]) {
+      /* Set height when active attribute set (thus 'open') to activeHeight variable. */
+      :host([isActive]) {
         height: var(--activeHeight);
       }
       summary {

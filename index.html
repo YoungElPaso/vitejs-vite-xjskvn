@@ -34,32 +34,35 @@
             </ul>
           </mds-extra-details>
         </mds-drawer>
-        <div slot="desktop">
-          No menu here! Could be anything else!
-        </div>
+        <div slot="desktop">No menu here! Could be anything else!</div>
       </mds-mobile-adapted-content>
 
       <section class="main">
         <h2>Main Content</h2>
 
         <!-- Details replaced with the mds-extra-details custom element to add enhanced open/shut behaviours, animation etc. -->
+        <h3>
+          E.g. isActive set dynamically because '.selected' child elements
+          inside.
+        </h3>
         <mds-extra-details
           summary="Benefits of Using the Extra Details Element"
-          isActive="active"
         >
           <!-- <details> -->
           <!-- <summary>Extra Details</summary> -->
           <ol>
             <li>Greater styling possibilities</li>
-            <li class="selected">Responds to 'active' content.</li>
+            <li class="selectsed">Responds to 'active' content.</li>
             <li class="active">Animation</li>
             <li>useful isactive property</li>
           </ol>
           <!-- </details> -->
         </mds-extra-details>
-        <mds-extra-details>
+        <h3>E.g. 'isActive' attribute set:</h3>
+        <mds-extra-details isActive>
           <!-- <details> -->
           <!-- <summary>Extra Details</summary> -->
+          <p>There could be more than a list in here!</p>
           <ul>
             <li>Foobar</li>
             <li>Snaggleboof</li>
