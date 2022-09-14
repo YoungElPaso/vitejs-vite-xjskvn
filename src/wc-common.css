@@ -28,7 +28,8 @@ mds-drawer:not(:defined) {
 }
 
 mds-drawer:not(:defined) section {
-  width: 100%;
+  /* TODO: is this still required? */
+  /* width: 100%; */
 }
 
 /* NEW CSS FOR DRAWER! */
