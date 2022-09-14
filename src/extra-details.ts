@@ -5,10 +5,11 @@ import {
   css,
   property,
   query,
-  queryAssignedElements,
 } from 'lit-element';
 import { sharedWCStyles } from './css-importer';
 
+// Declare new element: mds-extra-details.
+// Used for enhancing/replacing <details> with a version with animation, auto-opening if containing 'selected' content etc.
 @customElement('mds-extra-details')
 export class ExtraDetails extends LitElement {
   // isActive reflected property to allow manual setting of isActive or not; defaults to 'inactive', can be 'active'.
@@ -39,10 +40,9 @@ export class ExtraDetails extends LitElement {
 
   // TODO: do animation based on https://css-tricks.com/how-to-animate-the-details-element-using-waapi/ and continue to listen to click event on Summary to propagate click and state change to parent as well as handle click to handle animation (sync open/isActive props/attributes) and do animation/CSS on state change. Might need to intercept and disable default behavior as well based on click?
 
-
   // Listen for widow resize and adjust active height variable.
-  handleWindowResize(component:ExtraDetails) {
-    console.log(component)
+  handleWindowResize(component: ExtraDetails) {
+    console.log(component);
     let summaryElement: HTMLElement | null =
       component?._details.querySelector('summary');
 
@@ -64,12 +64,16 @@ export class ExtraDetails extends LitElement {
 
   // TODO: also need to check if children of details are 'active' if so bubble up an event to set the property? Sure. sounds good.
 
-  connectedCallback(){
+  connectedCallback() {
     super.connectedCallback();
     let t = this;
-    window.addEventListener('resize', function(){
-      t.handleWindowResize(t);
-    }, false);
+    window.addEventListener(
+      'resize',
+      function () {
+        t.handleWindowResize(t);
+      },
+      false
+    );
   }
 
   firstUpdated() {
@@ -117,8 +121,7 @@ export class ExtraDetails extends LitElement {
     let summaryElement: HTMLElement | null =
       this._details.querySelector('summary');
 
-    let listElement: HTMLDivElement | null =
-      this._details.querySelector('div');
+    let listElement: HTMLDivElement | null = this._details.querySelector('div');
     // TODO: also get summary height as initial height for inactive state and use w/ animation with other child elements heights to create 'from' 'to' values.
     let h = summaryElement?.clientHeight;
     let hh = listElement?.clientHeight;
