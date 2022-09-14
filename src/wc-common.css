@@ -80,42 +80,6 @@ mds-drawer:defined {
   animation: fade-in 0.3s;
 }
 
-mds-drawer[initialized] {
-  /* animation-name: slide-left; */
-  /* animation-duration: 1s; */
-  /* animation-fill-mode: forwards; */
-}
-
-mds-drawer[openStatus] {
-  /* animation-name: slide-right; */
-}
-
-mds-drawer:not([openStatus]) {
-  /* animation-name: slide-left; */
-}
-
-@keyframes slide-right {
-  from {
-    /* background: green; */
-    width: 0;
-  }
-  to {
-    /* background: red; */
-    width: min(80%, 75vw);
-  }
-}
-
-@keyframes slide-left {
-  from {
-    /* background: red; */
-    width: min(80%, 75vw);
-  }
-  to {
-    /* background: green; */
-    width: 0;
-  }
-}
-
 /* End of new Drawer CSS. */
 
 mds-mobile-adapted-content:defined {
