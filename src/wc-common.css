@@ -9,17 +9,6 @@
   white-space: nowrap;
   width: 1px;
 }
-/* 
-mds-drawer:defined {
-  animation-name: slide-from-left, fade-in;
-  animation-duration: 0.3s, 0.3s;
-  animation-play-state: paused, running;
-} */
-
-/* TODO: flesh out initialized styles. See related Codepen.!!!!! */
-/* mds-drawer[initialized] { */
-/* border: 10px lime solid; */
-/* } */
 
 /* Basic fade-in animation. */
 @keyframes fade-in {
@@ -31,31 +20,7 @@ mds-drawer:defined {
   }
 }
 
-/* TODO: probably re-work animations as specific to Drawer and put the animation definitions in the CSS for the Component? No need to generalize them at the moment really - Just need to have the fade-in animation here for all components as they go from undefined to defined - maybe initial width/margin-left for Drawer too but dunno about that - should use preload maybe to block rendering of component till CSS is loaded anyway? */
-
-/* TODO: add an set of keyframes for active facets etc and use that to simply extend regular <details> tag with animation on opening - i.e. animate height - calculate that I guess? */
-
-/* Basic slide-in-from-left animation. */
-@keyframes slide-from-left {
-  from {
-    margin-left: calc(-33vw - 1rem);
-  }
-  to {
-    margin-left: 0;
-  }
-}
-
-mds-drawer:not(:defined) {
-  /* Should basically just be partaking of 'off-screen' styles. */
-  /* margin-left: -1000px; */
-
-  /* Not defined, so by definition not visible...need to do animations not transition here! */
-  /* opacity: 0; */
-  /* transition: opacity 8s ease-in; */
-  /* background: red; */
-}
 /* Arguably Drawer stuff should be hidden entirely until element is defined. */
-/* Back to getting some nasty FOUC on the Drawer again, so need to work on the animation/transition etc */
 mds-drawer:not(:defined) {
   display: none;
   width: 0;
