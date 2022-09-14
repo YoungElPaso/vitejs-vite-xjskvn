@@ -108,6 +108,7 @@ export class ExtraDetails extends LitElement {
     console.log('details', this._details);
 
     // See if there are any active children.
+    // TODO: since this selector string could be totally variable, allow it to be set as prop/attribute.
     let activeChild: NodeList =
       this._details.querySelectorAll('.selected, .active');
 
