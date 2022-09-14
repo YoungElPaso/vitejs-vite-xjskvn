@@ -17,8 +17,7 @@ export class MobileAdaptedContent extends LitElement {
       renderTemplate = html`
           <slot name="mobile-only"></slot>`;
     }
-
-
+    
     return renderTemplate;
   }
 }
