@@ -10,7 +10,7 @@
   width: 1px;
 }
 
-/* Basic fade-in animation. */
+/* Basic fade-in animation. Used for WC 'hydration' (undefined -> defined) transition. */
 @keyframes fade-in {
   from {
     opacity: 0;
