@@ -1,11 +1,17 @@
-/* Shared utilities and other styles common to all web components. Includes some variables, utilities and initial states for web components.*/
+/* 
+Shared utilities and other styles common to all web components. Includes some variables, utilities and initial states for web components
+*/
 
-/* Variables. */
+/*
+Variables. 
+*/
 :root {
   --animation-duration: 0.6s;
 }
 
-/* Screen-reader only utility. */
+/* 
+Screen-reader only utility. 
+*/
 .sr-only:not(:focus):not(:active) {
   clip: rect(0 0 0 0);
   clip-path: inset(100%);
@@ -16,7 +22,9 @@
   width: 1px;
 }
 
-/* Basic fade-in animation. Used for WC 'hydration' (undefined -> defined) transition. */
+/*
+Basic fade-in animation. Used for WC 'hydration' (undefined -> defined) transition.
+*/
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -26,23 +34,29 @@
   }
 }
 
-/* Drawer component.*/
-/* Drawer should be hidden entirely until element is defined - it's initial state is totally hidden. */
+/* 
+  Drawer component.
+*/
 mds-drawer:not(:defined) {
+  /* Drawer should be hidden entirely until element is defined - it's initial state is totally hidden. */
   display: none;
 }
 
-/* Animate with fade-in when defined. */
 mds-drawer:defined {
+  /* Animate with fade-in when defined. */
   animation: fade-in var(--animation-duration);
 }
 
-/* Mobile adapted content component. */
-/* Animate with fade-in when defined. */
+/* 
+  Mobile adapted content component. 
+*/
 mds-mobile-adapted-content:defined {
+  /* Animate with fade-in when defined. */
   animation: fade-in var(--animation-duration);
 }
-/* Initial states for mds-mobile-adapted-content based on media-query. */
+/* 
+  Initial states for mds-mobile-adapted-content based on media-query.
+*/
 @media (min-width: 420px) {
   /* If on desktop, hide all mobile-only slot content. */
   [slot='mobile-only'] {
@@ -56,11 +70,13 @@ mds-mobile-adapted-content:defined {
   }
 }
 
-/* Extra-details component. */
+/* 
+  Extra-details component.
+*/
 mds-extra-details:defined {
   animation: fade-in var(--animation-duration);
 }
-/* Hide extra-details children visually for until defined. */
 mds-extra-details:not(:defined) * {
+  /* Hide extra-details children visually for until defined. */
   visibility: hidden;
 }

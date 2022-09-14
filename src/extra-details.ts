@@ -7,7 +7,6 @@ import {
   query,
   queryAssignedElements,
 } from 'lit-element';
-
 import { sharedWCStyles } from './css-importer';
 
 @customElement('mds-extra-details')
