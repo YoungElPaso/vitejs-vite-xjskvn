@@ -21,23 +21,9 @@ export class ExtraDetails extends LitElement {
   // Allows for checking child elements for 'activity' and setting parent open/closed.
   @property({ type: String }) autoOpenSelector: string = '';
 
-  // Get the child details element.
+  // Get the child details element to query for heights, children etc.
   @query('details')
   _details!: HTMLDetailsElement;
-
-  // TODO: need to grab refs to some of the child elements to attach handlers, update attributes etc. Read how to do that!
-  // handleClick() {
-  //   console.log(this._details);
-  // }
-
-  // @state()
-  // protected _initHeight: String | Number = '';
-  // @state()
-  // protected _activeHeight: String | Number = '';
-
-  // TODO: also need to add animation to open/close. For that need to compute heights and then transition between them - so dynamically set style based on children? Could calculate on firstUpdate maybe?
-
-  // TODO: do animation based on https://css-tricks.com/how-to-animate-the-details-element-using-waapi/ and continue to listen to click event on Summary to propagate click and state change to parent as well as handle click to handle animation (sync open/isActive props/attributes) and do animation/CSS on state change. Might need to intercept and disable default behavior as well based on click?
 
   // Uses connectedCallback to compute some properties and set up some even listeners.
   connectedCallback() {
