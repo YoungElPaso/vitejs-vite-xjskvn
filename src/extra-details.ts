@@ -94,9 +94,8 @@ export class ExtraDetails extends LitElement {
   }
 
   render() {
-    let open = this.isActive ? 'open' : '';
     return html`
-    <details ?open=${open}>
+    <details ?open=${this.isActive}>
       <summary>
         <slot name="summary"></slot>
       </summary>
