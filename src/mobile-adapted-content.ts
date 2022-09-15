@@ -1,5 +1,5 @@
-import { TemplateResult } from 'lit';
-import { LitElement, html, customElement } from 'lit-element';
+import { LitElement, TemplateResult, html } from 'lit';
+import { customElement } from 'lit/decorators.js';
 
 // Define new element to conditionally render content on mobile or desktop declaratively using a named slot and default slot.
 @customElement('mds-mobile-adapted-content')

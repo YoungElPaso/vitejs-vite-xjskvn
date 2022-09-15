@@ -4,7 +4,7 @@
 import { DrawerElement } from './drawer';
 
 // Import the MobileAdaptedContent web component.
-import { MobileAdaptedContent } from './mobile-adapted-content';
+// import { MobileAdaptedContent } from './mobile-adapted-content';
 
 // Import the ExtraDetails web component.
 import { ExtraDetails } from './extra-details';
