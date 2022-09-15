@@ -13,25 +13,17 @@ import { sharedWCStyles } from './css-importer';
 // Used for enhancing/replacing <details> with a version with animation, auto-opening if containing 'selected' content etc.
 @customElement('mds-extra-details')
 export class ExtraDetails extends LitElement {
-  // isActive reflected property to allow manual setting of isActive or not; defaults to 'inactive', can be 'active'.
-  // TODO: should this just be a boolean? Probably. Allows access to set open/closed for child from outside easily and declaratively on parent, enables accordion type behaviour based on higher state (e.g. open one detail, close others etc) and composing together and by checking child elements for 'activity' and setting parent open/closed.
-
-  // Property for autoOpenSelector, allows component to check for children matching that selector.
-  @property({ type: String }) autoOpenSelector: string = '';
-
-  // Property for active state.
+  // Reflected property for active state to allow manual setting of isActive or not; defaults false.
+  //Allows access to set open/closed for child from outside easily and declaratively on parent, enables accordion type behaviour based on higher state (e.g. open one detail, close others etc) and composing together.
   @property({ type: Boolean, reflect: true }) isActive: boolean = false;
 
+  // Property for autoOpenSelector, allows component to check for children matching that selector.
+  // Allows for checking child elements for 'activity' and setting parent open/closed.
+  @property({ type: String }) autoOpenSelector: string = '';
+
   // Get the child details element.
-  // @queryAssignedElements({ selector: 'details' })
   @query('details')
   _details!: HTMLDetailsElement;
-
-  // Get the slotted children elements.
-  @queryAssignedElements({ selector: '*' })
-  _slottedElements!: Array<HTMLElement>;
-
-  // TODO: this handler needs to be added to the <summary> tag which is a part of the child markup slotted.
 
   // TODO: need to grab refs to some of the child elements to attach handlers, update attributes etc. Read how to do that!
   // handleClick() {
