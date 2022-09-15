@@ -110,6 +110,7 @@ export class ExtraDetails extends LitElement {
     return [
       css`
       :host {
+        /* TODO: make this look more like homepage menu reveals - solid border, shadow etc.*/
         display: block;
         overflow: hidden;
         background: white;
