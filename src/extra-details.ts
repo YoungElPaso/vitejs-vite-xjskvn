@@ -1,12 +1,12 @@
+// Import LitElement stuff.
+import { LitElement, html, css } from 'lit';
 import {
-  LitElement,
-  customElement,
-  html,
-  css,
   property,
   query,
   queryAssignedElements,
-} from 'lit-element';
+  customElement,
+} from 'lit/decorators.js';
+
 import { sharedWCStyles } from './css-importer';
 
 // Declare new element: mds-extra-details.
@@ -74,7 +74,11 @@ export class ExtraDetails extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    let activeChild = this.querySelectorAll(this.autoOpenSelector).length > 0;
+    let activeChild: boolean = false;
+
+    if (this.autoOpenSelector) {
+      this.querySelectorAll(this.autoOpenSelector).length > 0;
+    }
 
     if (!this.isActive) {
       this.isActive = activeChild;

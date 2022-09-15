@@ -1,6 +1,6 @@
 // Import LitElement stuff.
-import { TemplateResult } from 'lit';
-import { LitElement, html, property, customElement, css } from 'lit-element';
+import { TemplateResult, LitElement, html, css } from 'lit';
+import { property, customElement } from 'lit/decorators.js';
 
 // Get common WC styles from css-importer.
 import { sharedWCStyles } from './css-importer';
