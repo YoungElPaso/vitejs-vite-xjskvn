@@ -62,6 +62,7 @@ export class ExtraDetails extends LitElement {
 
   // Calculates the heights required for animating the component on open/shut.
   getHeights() {
+    //
     let summaryElement: HTMLElement | null =
       this._details.querySelector('summary');
 
