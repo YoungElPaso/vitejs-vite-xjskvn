@@ -77,6 +77,12 @@ mds-mobile-adapted-content:defined {
 mds-extra-details:defined {
   animation: fade-in var(--animation-duration);
 }
+/* TODO: ther's a big FOUC/repaint when defined because there's no summary - so either put in a summary :part rather than a property or add a bunch of extra padding to the top of undefined that is a placeholder for summary. */
+mds-extra-details:not(:defined) * {
+  /* This is arbitrary - should be tied to height of summary; which needs to have a max height? Blah or should just use slot for summary so the header get's transposed...need that anyway probably to account for different markup. TODO: add a name slot for summary. */
+  /* TODO: add a prop for 'selected' query.  */
+  padding-top: 3rem;
+}
 mds-extra-details:not(:defined) * {
   /* Hide extra-details children visually for until defined. */
   visibility: hidden;

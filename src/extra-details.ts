@@ -155,9 +155,9 @@ export class ExtraDetails extends LitElement {
     // TODO: also get summary height as initial height for inactive state and use w/ animation with other child elements heights to create 'from' 'to' values.
     // TODO: don't forget only to set h this way on inactive!
     let h = listElement?.clientHeight;
-    if (!this.isActive) {
-      h = summaryElement?.clientHeight;
-    }
+    // if (!this.isActive) {
+    h = summaryElement?.clientHeight;
+    // }
 
     let hh = listElement?.clientHeight;
     // TODO: account for margins on listElement...
@@ -165,13 +165,17 @@ export class ExtraDetails extends LitElement {
     // let mm = listElement?.style.marginBlockStart;
     // console.log('mm', mm);
     // TODO: this is a bit confusing!
-    // hh = hh && h ? hh + h : 100;
+    hh = hh && h ? hh + h : 100;
 
-    let hhh = hh + h;
+    // let hhh = hh + h;
+
+    // TODO: rework this height stuff w/ reference to active status.
+    // TODO: tho maybe its actually just the approx 100px height diff between undefined and defined that is making the FOUC appear again? More apparent when other elements in the same flow...dang, maybe just go back to it sliding open on firstUpdate...blurgh...
 
     // Edge case, but this should probably be re-calculated on window resize etc? Maybe a todo...
+
     this.style.setProperty('--initHeight', String(h) + 'px');
-    this.style.setProperty('--activeHeight', String(hhh) + 'px');
+    this.style.setProperty('--activeHeight', String(hh) + 'px');
 
     // TOOD: all of the calculations above and dimensions and stuff gets very hard to be sure of if we allow any children and dont include the details parts in the ShadowDOM - passing any content into a slot means trying to suss out parts and calculating the margins etc. Probably should make this a lot simpler and have the component itself define most of the details parts and wrap slotted content in a div so we can easily ascertain the height of that and add to summary which we can know easily, without querying slotted content to form the total activeHeight etc. Works for now tho! YAy!
 
