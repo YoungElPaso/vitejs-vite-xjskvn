@@ -20,7 +20,7 @@ export class ExtraDetails extends LitElement {
   @query('details')
   _details!: HTMLDetailsElement;
 
-  // Uses connectedCallback to compute some properties and set up some even listeners.
+  // Uses connectedCallback to compute some properties and set up some event listeners.
   connectedCallback() {
     super.connectedCallback();
 
