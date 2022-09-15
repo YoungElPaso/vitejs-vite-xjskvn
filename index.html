@@ -42,16 +42,12 @@
         <h2>Main Content</h2>
 
         <!-- Details replaced with the mds-extra-details custom element to add enhanced open/shut behaviours, animation etc. -->
-        <h3>
-          E.g. isActive set dynamically because '.selected' child elements
-          inside.
-        </h3>
-        <mds-extra-details>
+        <mds-extra-details autoOpenSelector=".active, .selected">
           <!-- <details> -->
           <h3 slot="summary">Benefits of Using the Extra Details Element</h3>
           <ol>
             <li>Greater styling possibilities</li>
-            <li class="selectsed">Responds to 'active' content.</li>
+            <li class="selected">Responds to 'active' content.</li>
             <li class="active">Animation</li>
             <li>useful isactive property</li>
           </ol>

@@ -16,8 +16,8 @@ export class ExtraDetails extends LitElement {
   // isActive reflected property to allow manual setting of isActive or not; defaults to 'inactive', can be 'active'.
   // TODO: should this just be a boolean? Probably. Allows access to set open/closed for child from outside easily and declaratively on parent, enables accordion type behaviour based on higher state (e.g. open one detail, close others etc) and composing together and by checking child elements for 'activity' and setting parent open/closed.
 
-  // Property for summary string.
-  @property({ type: String }) summary: String | null = null;
+  // Property for autoOpenSelector
+  @property({ type: String }) autoOpenSelector: String = '';
 
   // Property for active state.
   @property({ type: Boolean, reflect: true }) isActive: Boolean = false;
@@ -74,10 +74,8 @@ export class ExtraDetails extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    // TODO: try to find *earliest* possible moment to get details to inspect for active children!
 
-    let activeChild = this.querySelectorAll('.selected, .active').length > 0;
-    console.log('call from connected', activeChild);
+    let activeChild = this.querySelectorAll(this.autoOpenSelector).length > 0;
 
     if (!this.isActive) {
       this.isActive = activeChild;
@@ -199,11 +197,13 @@ export class ExtraDetails extends LitElement {
     let open = this.isActive ? 'open' : '';
     return html`
     <details ?open=${open}>
-      <summary><slot name="summary"></slot></summary>
-        <div>
-          <slot>
-          </slot>
-        </div>
+      <summary>
+        <slot name="summary"></slot>
+      </summary>
+      <div>
+        <slot>
+        </slot>
+      </div>
     </details>`;
   }
 
