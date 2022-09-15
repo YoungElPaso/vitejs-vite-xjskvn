@@ -47,32 +47,6 @@ export class ExtraDetails extends LitElement {
 
   // TODO: do animation based on https://css-tricks.com/how-to-animate-the-details-element-using-waapi/ and continue to listen to click event on Summary to propagate click and state change to parent as well as handle click to handle animation (sync open/isActive props/attributes) and do animation/CSS on state change. Might need to intercept and disable default behavior as well based on click?
 
-  // Listen for widow resize and adjust active height variables.
-  handleWindowResize() {
-    this.getHeights();
-  }
-  // Listen for widow resize and adjust active height variable.
-  // handleWindowResize(component: ExtraDetails) {
-  //   console.log(component);
-  //   let summaryElement: HTMLElement | null =
-  //     component?._details.querySelector('summary');
-
-  //   let listElement: HTMLDivElement | null =
-  //     component?._details.querySelector('div');
-
-  //   let h = summaryElement?.clientHeight;
-  //   let hh = listElement?.clientHeight;
-  //   // TODO: account for margins on listElement...
-
-  //   // let mm = listElement?.style.marginBlockStart;
-  //   // console.log('mm', mm);
-  //   hh = hh && h ? hh + h : 100;
-
-  //   // Edge case, but this should probably be re-calculated on window resize etc? Maybe a todo...
-  //   component.style.setProperty('--initHeight', String(h) + 'px');
-  //   component.style.setProperty('--activeHeight', String(hh) + 'px');
-  // }
-
   // Uses connectedCallback to compute some properties and set up some even listeners.
   connectedCallback() {
     super.connectedCallback();
@@ -129,6 +103,11 @@ export class ExtraDetails extends LitElement {
 
   // Use firstUpdated to gather info about height of elements after first render.
   firstUpdated() {
+    this.getHeights();
+  }
+
+  // Listen for widow resize and adjust height variables.
+  handleWindowResize() {
     this.getHeights();
   }
 
