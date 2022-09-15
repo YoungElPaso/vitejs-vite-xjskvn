@@ -62,22 +62,25 @@ export class ExtraDetails extends LitElement {
 
   // Calculates the heights required for animating the component on open/shut.
   getHeights() {
-    //
+    // Get the summary element to get it's height.
     let summaryElement: HTMLElement | null =
       this._details.querySelector('summary');
 
-    let listElement: HTMLDivElement | null = this._details.querySelector('div');
+    // Get the content element to get it's height.
+    let contentElement: HTMLDivElement | null =
+      this._details.querySelector('div');
 
-    let h = listElement?.clientHeight;
-    h = summaryElement?.clientHeight;
+    // Get the height of the summary element.
+    let h = summaryElement?.clientHeight;
 
-    let hh = listElement?.clientHeight;
+    // Get the height of the content element.
+    let hh = contentElement?.clientHeight;
 
-    // TODO: this is a bit confusing! Explain it...
-    hh = hh && h ? hh + h : 100;
+    // TODO: this is a bit confusing! Explain it...TODO: refactor var names!
+    let activeHeight = hh && h ? hh + h : 100;
 
     this.style.setProperty('--initHeight', String(h) + 'px');
-    this.style.setProperty('--activeHeight', String(hh) + 'px');
+    this.style.setProperty('--activeHeight', String(activeHeight) + 'px');
   }
 
   // Use firstUpdated to gather info about height of elements after first render.
