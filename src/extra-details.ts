@@ -71,16 +71,19 @@ export class ExtraDetails extends LitElement {
       this._details.querySelector('div');
 
     // Get the height of the summary element.
-    let h = summaryElement?.clientHeight;
+    let summaryHeight = summaryElement?.clientHeight;
 
     // Get the height of the content element.
-    let hh = contentElement?.clientHeight;
+    let contentHeight = contentElement?.clientHeight;
 
-    // TODO: this is a bit confusing! Explain it...TODO: refactor var names!
-    let activeHeight = hh && h ? hh + h : 100;
+    // Set activeHeight to the sum of both numbers if they exist.
+    let fullHeight = contentHeight! + summaryHeight!;
 
-    this.style.setProperty('--initHeight', String(h) + 'px');
-    this.style.setProperty('--activeHeight', String(activeHeight) + 'px');
+    // Set the initHeight CSS var to summaryHeight - the height of the summary UI.
+    this.style.setProperty('--initHeight', String(summaryHeight) + 'px');
+
+    // Set the activeHeight CSS var to fullHeight as that is the total height the component should have when active.
+    this.style.setProperty('--activeHeight', String(fullHeight) + 'px');
   }
 
   // Use firstUpdated to gather info about height of elements after first render.
