@@ -79,15 +79,13 @@ mds-extra-details {
   animation: fade-in var(--animation-duration-slow);
 }
 mds-extra-details [slot='summary'] {
+  /* Set a standard size for the summary slot. */
   font-size: 1rem;
   margin: 0;
+  /* Ensure any block-level element is rendered inline-block instead. */
   display: inline-block;
 }
-
 mds-extra-details:not(:defined) * {
   /* Hide extra-details children visually for until defined. */
-  /* visibility: hidden; */
-  opacity: 0;
-}
-mds-extra-details [slot='summary'] {
+  visibility: hidden;
 }

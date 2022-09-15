@@ -25,7 +25,8 @@
       <!-- Declaratively specifies which content should be displayed on mobile, vs desktop; rather than merely hide w/ CSS media-queries. Allows content to be moved around declaratively in HTML rather than .append() or whatever purely in JS! -->
       <mds-mobile-adapted-content>
         <mds-drawer slot="mobile-only" sectionTitle="Primary Menu">
-          <mds-extra-details summary="Some Stuff">
+          <mds-extra-details>
+            <h3 slot="summary">A menu</h3>
             <ul class="list-style-none">
               <li>Greater styling possibilities</li>
               <li>Responds to 'active' content.</li>
