@@ -57,7 +57,7 @@ mds-mobile-adapted-content:defined {
   animation: fade-in var(--animation-duration);
 }
 /* 
-  Initial states for mds-mobile-adapted-content based on media-query.
+  Initial states for mds-mobile-adapted-content based on media-query. TODO: probably should go in own file.
 */
 @media (min-width: 420px) {
   /* If on desktop, hide all mobile-only slot content. */
