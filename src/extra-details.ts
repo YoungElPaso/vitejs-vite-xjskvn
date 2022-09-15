@@ -30,9 +30,9 @@ export class ExtraDetails extends LitElement {
       let activeChild: boolean =
         this.querySelectorAll(this.autoOpenSelector).length > 0;
 
-      // If isActive is not already set and so is false, assign activeChild.
-      if (!this.isActive) {
-        this.isActive = activeChild;
+      // If isActive is false, and there's an activeChild set isActive true.
+      if (!this.isActive && activeChild) {
+        this.isActive = true;
       }
     }
 
