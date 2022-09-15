@@ -69,19 +69,20 @@ export class ExtraDetails extends LitElement {
     component.style.setProperty('--activeHeight', String(hh) + 'px');
   }
 
-  // TODO: also need to check if children of details are 'active' if so bubble up an event to set the property? Sure. sounds good.
-
+  // Uses connectedCallback to compute some properties and set up some even listeners.
   connectedCallback() {
     super.connectedCallback();
 
-    let activeChild: boolean = false;
-
+    // If autoOpenSelector attr/prop set, use it to check for active children.
     if (this.autoOpenSelector) {
-      this.querySelectorAll(this.autoOpenSelector).length > 0;
-    }
+      // If fouund, activeChild is true.
+      let activeChild: boolean =
+        this.querySelectorAll(this.autoOpenSelector).length > 0;
 
-    if (!this.isActive) {
-      this.isActive = activeChild;
+      // If isActive is not already set and so is false, assign activeChild.
+      if (!this.isActive) {
+        this.isActive = activeChild;
+      }
     }
 
     // Add event listener for window resizing.
@@ -93,24 +94,17 @@ export class ExtraDetails extends LitElement {
       },
       false
     );
+
+    // Add an event listener to handle clicks on the details element and update properties.
+    this.addEventListener('click', function (e) {
+      // Need to wrap in requestAnimationFrame to get the proper value of details.open after it's changed!
+      requestAnimationFrame(function () {
+        t.isActive = t._details.open;
+      });
+    });
   }
 
   firstUpdated() {
-    // TODO: replace hardcoded w/ calculated values based on layout:
-    // this._initHeight = 1;
-    // this._activeHeight = 6;
-
-    // Add an event listener to handle clicks on the details element and update properties.
-    let t = this;
-    this.addEventListener('click', function (e) {
-      // Need to wrap in requestAnimationFrame to get the proper value of details.open after it's changed!
-      // TODO: unsure this makes sense...
-      requestAnimationFrame(function () {
-        t.isActive = t._details.open;
-        console.log(t._details.open);
-      });
-    });
-
     // TODO: post-refactor, fix type errors on elements!
 
     // super.firstUpdated();
