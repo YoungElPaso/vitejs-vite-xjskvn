@@ -47,6 +47,7 @@ export class ExtraDetails extends LitElement {
     );
 
     // Add an event listener to handle clicks on the details element and update properties.
+    // TODO: possibly change event to details.open attribute change, it would be more explicit. Probably wouldn't need requestAnimation in that case.
     this.addEventListener('click', function (e) {
       // Need to wrap in requestAnimationFrame to get the proper value of details.open after it's changed!
       requestAnimationFrame(function () {
