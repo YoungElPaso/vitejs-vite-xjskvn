@@ -17,11 +17,10 @@ export class ExtraDetails extends LitElement {
   // TODO: should this just be a boolean? Probably. Allows access to set open/closed for child from outside easily and declaratively on parent, enables accordion type behaviour based on higher state (e.g. open one detail, close others etc) and composing together and by checking child elements for 'activity' and setting parent open/closed.
 
   // Property for autoOpenSelector
-  @property({ type: String }) autoOpenSelector: String = '';
+  @property({ type: String }) autoOpenSelector: string = '';
 
   // Property for active state.
-  @property({ type: Boolean, reflect: true }) isActive: Boolean = false;
-  // TODO: tie this to details 'open' attr by passing down?
+  @property({ type: Boolean, reflect: true }) isActive: boolean = false;
 
   // Get the child details element.
   // @queryAssignedElements({ selector: 'details' })

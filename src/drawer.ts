@@ -12,10 +12,10 @@ export class DrawerElement extends LitElement {
 
   // This property/attribute reflects so we can style it in CSS via attribute selector.
   @property({ type: Boolean, reflect: true })
-  openStatus: Boolean = false;
+  openStatus: boolean = false;
 
   // A property for a section title for the drawer.
-  @property({ type: String }) sectionTitle: String = '';
+  @property({ type: String }) sectionTitle: string = '';
 
   // Handle button click to open/close drawer.
   handleClick() {
