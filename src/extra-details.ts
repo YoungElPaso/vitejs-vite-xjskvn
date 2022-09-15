@@ -1,11 +1,6 @@
 // Import LitElement stuff.
 import { LitElement, html, css } from 'lit';
-import {
-  property,
-  query,
-  queryAssignedElements,
-  customElement,
-} from 'lit/decorators.js';
+import { property, query, customElement } from 'lit/decorators.js';
 
 import { sharedWCStyles } from './css-importer';
 
