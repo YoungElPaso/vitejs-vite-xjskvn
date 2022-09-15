@@ -47,27 +47,31 @@ export class ExtraDetails extends LitElement {
 
   // TODO: do animation based on https://css-tricks.com/how-to-animate-the-details-element-using-waapi/ and continue to listen to click event on Summary to propagate click and state change to parent as well as handle click to handle animation (sync open/isActive props/attributes) and do animation/CSS on state change. Might need to intercept and disable default behavior as well based on click?
 
-  // Listen for widow resize and adjust active height variable.
-  handleWindowResize(component: ExtraDetails) {
-    console.log(component);
-    let summaryElement: HTMLElement | null =
-      component?._details.querySelector('summary');
-
-    let listElement: HTMLDivElement | null =
-      component?._details.querySelector('div');
-
-    let h = summaryElement?.clientHeight;
-    let hh = listElement?.clientHeight;
-    // TODO: account for margins on listElement...
-
-    // let mm = listElement?.style.marginBlockStart;
-    // console.log('mm', mm);
-    hh = hh && h ? hh + h : 100;
-
-    // Edge case, but this should probably be re-calculated on window resize etc? Maybe a todo...
-    component.style.setProperty('--initHeight', String(h) + 'px');
-    component.style.setProperty('--activeHeight', String(hh) + 'px');
+  // Listen for widow resize and adjust active height variables.
+  handleWindowResize() {
+    this.getHeights();
   }
+  // Listen for widow resize and adjust active height variable.
+  // handleWindowResize(component: ExtraDetails) {
+  //   console.log(component);
+  //   let summaryElement: HTMLElement | null =
+  //     component?._details.querySelector('summary');
+
+  //   let listElement: HTMLDivElement | null =
+  //     component?._details.querySelector('div');
+
+  //   let h = summaryElement?.clientHeight;
+  //   let hh = listElement?.clientHeight;
+  //   // TODO: account for margins on listElement...
+
+  //   // let mm = listElement?.style.marginBlockStart;
+  //   // console.log('mm', mm);
+  //   hh = hh && h ? hh + h : 100;
+
+  //   // Edge case, but this should probably be re-calculated on window resize etc? Maybe a todo...
+  //   component.style.setProperty('--initHeight', String(h) + 'px');
+  //   component.style.setProperty('--activeHeight', String(hh) + 'px');
+  // }
 
   // Uses connectedCallback to compute some properties and set up some even listeners.
   connectedCallback() {
@@ -90,7 +94,7 @@ export class ExtraDetails extends LitElement {
     window.addEventListener(
       'resize',
       function () {
-        t.handleWindowResize(t);
+        t.handleWindowResize();
       },
       false
     );
@@ -104,30 +108,28 @@ export class ExtraDetails extends LitElement {
     });
   }
 
+  // Calculates the heights required for animating the component on open/shut.
+  getHeights() {
+    let summaryElement: HTMLElement | null =
+      this._details.querySelector('summary');
+
+    let listElement: HTMLDivElement | null = this._details.querySelector('div');
+
+    let h = listElement?.clientHeight;
+    h = summaryElement?.clientHeight;
+
+    let hh = listElement?.clientHeight;
+
+    // TODO: this is a bit confusing! Explain it...
+    hh = hh && h ? hh + h : 100;
+
+    this.style.setProperty('--initHeight', String(h) + 'px');
+    this.style.setProperty('--activeHeight', String(hh) + 'px');
+  }
+
+  // Use firstUpdated to gather info about height of elements after first render.
   firstUpdated() {
-    let t = this;
-    function getHeights() {
-      let summaryElement: HTMLElement | null =
-        t._details.querySelector('summary');
-
-      let listElement: HTMLDivElement | null =
-        t._details.querySelector('div');
-      // TODO: also get summary height as initial height for inactive state and use w/ animation with other child elements heights to create 'from' 'to' values.
-      // TODO: don't forget only to set h this way on inactive!
-      let h = listElement?.clientHeight;
-      // if (!this.isActive) {
-      h = summaryElement?.clientHeight;
-      // }
-
-      let hh = listElement?.clientHeight;
-
-      // TODO: this is a bit confusing!
-      hh = hh && h ? hh + h : 100;
-
-      t.style.setProperty('--initHeight', String(h) + 'px');
-      t.style.setProperty('--activeHeight', String(hh) + 'px');
-    }
-    getHeights();
+    this.getHeights();
   }
 
   render() {
