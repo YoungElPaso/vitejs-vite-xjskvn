@@ -16,7 +16,7 @@ export class ExtraDetails extends LitElement {
   // isActive reflected property to allow manual setting of isActive or not; defaults to 'inactive', can be 'active'.
   // TODO: should this just be a boolean? Probably. Allows access to set open/closed for child from outside easily and declaratively on parent, enables accordion type behaviour based on higher state (e.g. open one detail, close others etc) and composing together and by checking child elements for 'activity' and setting parent open/closed.
 
-  // Property for autoOpenSelector
+  // Property for autoOpenSelector, allows component to check for children matching that selector.
   @property({ type: String }) autoOpenSelector: string = '';
 
   // Property for active state.
