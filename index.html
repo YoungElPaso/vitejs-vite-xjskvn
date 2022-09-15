@@ -45,11 +45,9 @@
           E.g. isActive set dynamically because '.selected' child elements
           inside.
         </h3>
-        <mds-extra-details
-          summary="Benefits of Using the Extra Details Element"
-        >
+        <mds-extra-details>
           <!-- <details> -->
-          <!-- <summary>Extra Details</summary> -->
+          <h3 slot="summary">Benefits of Using the Extra Details Element</h3>
           <ol>
             <li>Greater styling possibilities</li>
             <li class="selectsed">Responds to 'active' content.</li>
@@ -58,10 +56,12 @@
           </ol>
           <!-- </details> -->
         </mds-extra-details>
-        <h3>E.g. 'isActive' attribute set:</h3>
+        <!-- <h3>E.g. 'isActive' attribute set:</h3> -->
         <mds-extra-details isActive>
           <!-- <details> -->
-          <!-- <summary>Extra Details</summary> -->
+          <h4 slot="summary">Extra Details</h4>
+          <p>There could be more than a list in here!</p>
+          <p>There could be more than a list in here!</p>
           <p>There could be more than a list in here!</p>
           <ul>
             <li>Foobar</li>

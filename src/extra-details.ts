@@ -199,7 +199,7 @@ export class ExtraDetails extends LitElement {
     let open = this.isActive ? 'open' : '';
     return html`
     <details ?open=${open}>
-      <summary>${this.summary}</summary>
+      <summary><slot name="summary"></slot></summary>
         <div>
           <slot>
           </slot>
@@ -217,7 +217,7 @@ export class ExtraDetails extends LitElement {
         padding: 0.5rem;
         margin-bottom: 1rem;
         border-radius: 0.25rem;
-        border: 1px #BBB solid;
+        border: 1px #bbb solid;
         transition: height var(--animation-duration-fast);
         /* Set initial height to initHeight variable. */
         height: var(--initHeight);

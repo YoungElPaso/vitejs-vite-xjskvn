@@ -8,6 +8,7 @@ Common variables.
 :root {
   --animation-duration: 0.6s;
   --animation-duration-fast: 0.3s;
+  --animation-duration-slow: 1.2s;
 }
 
 /* 
@@ -74,16 +75,19 @@ mds-mobile-adapted-content:defined {
 /* 
   Extra-details component.
 */
-mds-extra-details:defined {
-  animation: fade-in var(--animation-duration);
+mds-extra-details {
+  animation: fade-in var(--animation-duration-slow);
 }
-/* TODO: ther's a big FOUC/repaint when defined because there's no summary - so either put in a summary :part rather than a property or add a bunch of extra padding to the top of undefined that is a placeholder for summary. */
-mds-extra-details:not(:defined) * {
-  /* This is arbitrary - should be tied to height of summary; which needs to have a max height? Blah or should just use slot for summary so the header get's transposed...need that anyway probably to account for different markup. TODO: add a name slot for summary. */
-  padding-top: 3rem; /* TODO: get rid of this when above is done.*/
-  /* TODO: add a prop for 'selected' query.  */
+mds-extra-details [slot='summary'] {
+  font-size: 1rem;
+  margin: 0;
+  display: inline-block;
 }
+
 mds-extra-details:not(:defined) * {
   /* Hide extra-details children visually for until defined. */
-  visibility: hidden;
+  /* visibility: hidden; */
+  opacity: 0;
+}
+mds-extra-details [slot='summary'] {
 }
