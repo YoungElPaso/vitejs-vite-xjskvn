@@ -87,5 +87,6 @@ mds-extra-details [slot='summary'] {
 }
 mds-extra-details:not(:defined) * {
   /* Hide extra-details children visually for until defined. */
+  /* TODO: make sure this doesn't happen unless there's JS! */
   visibility: hidden;
 }
