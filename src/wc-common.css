@@ -9,6 +9,11 @@ Common variables.
   --animation-duration: 0.6s;
   --animation-duration-fast: 0.3s;
   --animation-duration-slow: 1.2s;
+
+  /* Loading animation in single line syntax: */
+  --loading-animation: fade-in var(--animation-duration) ease-in 300ms backwards;
+
+  /* TODO: need a way to disable all animations as per browser prefs. */
 }
 
 /* 
@@ -36,17 +41,36 @@ Basic fade-in animation. Used for WC 'hydration' (undefined -> defined) transiti
   }
 }
 
+@keyframes snap-in {
+  from {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+  }
+  to {
+    height: auto;
+    width: auto;
+    overflow: auto;
+    opacity: 1;
+  }
+}
+
 /* 
   Drawer component.
 */
 mds-drawer:not(:defined) {
-  /* Drawer should be hidden entirely until element is defined - it's initial state is totally hidden. */
-  display: none;
+  /* Drawer should be hidden entirely until element is defined - it's initial state is totally hidden. TODO: revise this explanation. */
+  animation: snap-in 0.3s;
+  animation-fill-mode: backwards;
+  animation-delay: 400ms;
+  overflow: hidden;
+  display: block;
 }
 
 mds-drawer:defined {
   /* Animate with fade-in when defined. */
-  animation: fade-in var(--animation-duration);
+  animation: var(--loading-animation);
 }
 
 /* 
@@ -54,10 +78,10 @@ mds-drawer:defined {
 */
 mds-mobile-adapted-content:defined {
   /* Animate with fade-in when defined. */
-  animation: fade-in var(--animation-duration);
+  animation: var(--loading-animation);
 }
 /* 
-  Initial states for mds-mobile-adapted-content based on media-query. TODO: probably should go in own file.
+  Initial states for mds-mobile-adapted-content based on media-query. TODO: probably should go in own file since it's not yet part of required components.
 */
 @media (min-width: 420px) {
   /* If on desktop, hide all mobile-only slot content. */
@@ -77,7 +101,8 @@ mds-mobile-adapted-content:defined {
 */
 mds-extra-details {
   display: block;
-  animation: fade-in var(--animation-duration) ease-in 400ms backwards;
+  /* Use loading animation to avoid FOUC and suggest hyrdation process to user. */
+  animation: var(--loading-animation);
 }
 mds-extra-details [slot='summary'] {
   /* Set a standard size for the summary slot. */
@@ -87,17 +112,10 @@ mds-extra-details [slot='summary'] {
   display: inline-block;
 }
 
-mds-extra-details:not(:defined) {
-  display: block; /* TODO: is this useful? Might be! */
-}
-
+/* Styles for extra-details lightDOM elements before hydration/defined. */
 mds-extra-details:not(:defined) * {
-  /* Timer animation to suggest interim 'loading' period between custom element not defined and defined. Allows lightDOM to 'load' and behave same way as shadowDOM even if there's no JS enabled. Helps avoid FOUC when JS is enabled as well. TODO: generalize this to all the other custom elements? */
-  /* animation-name: fade-in; */
-  /* animation-duration: var(--animation-duration-slow); */
-  /* animation-delay: 400ms; */
-  /* animation-fill-mode: backwards; */
-  animation: fade-in var(--animation-duration) ease-in 400ms backwards;
+  /* Timer/loading animation to suggest interim 'loading' period between custom element not defined and defined. Allows lightDOM to 'load' and behave same way as shadowDOM even if there's no JS enabled. Helps avoid FOUC when JS is enabled as well. */
+  animation: var(--loading-animation);
   /* TODO: 
   - did lightDOM timer technique: explain on Twitter/tell AC. */
 }
