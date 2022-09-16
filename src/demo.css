@@ -34,3 +34,28 @@ mds-extra-details ol {
 mds-extra-details li {
   margin-bottom: 0.25rem;
 }
+
+/* 
+  Mobile adapted content component. 
+  Probably should go in own/demo file for now since it's not yet part of required components.
+*/
+/* Defined state for mds-mobile-adapted-content. */
+mds-mobile-adapted-content {
+  /* Animate with fade-in when defined. */
+  animation: var(--loading-animation);
+}
+/* 
+  Initial states for mds-mobile-adapted-content slots based on media-query. 
+*/
+@media (min-width: 420px) {
+  /* If on desktop, hide all mobile-only slot content. Use important to take precedence over all defined/undefined states. */
+  [slot='mobile-only'] {
+    display: none !important;
+  }
+}
+@media (max-width: 420px) {
+  /* If on mobile, show only mobile-only slot content. Use important to take precedence over all defined/undefined states. */
+  [slot='desktop'] {
+    display: none !important;
+  }
+}
