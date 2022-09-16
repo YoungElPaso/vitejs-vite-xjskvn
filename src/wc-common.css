@@ -10,7 +10,7 @@ Common variables.
   --animation-duration-fast: 0.3s;
   --animation-duration-slow: 1.2s;
 
-  /* Loading animation in single line syntax: */
+  /* Loading animation expressed in single line syntax: */
   --loading-animation: fade-in var(--animation-duration) ease-in 300ms backwards;
 }
 
@@ -50,18 +50,20 @@ Basic fade-in animation. Used for WC 'hydration' (undefined -> defined) transiti
   }
 }
 
+/* 
+Snap-in animation: allows an element to be visually hidden/nearly equivalent to display:none. Why animation at all? - so elements can transition from one state to the other without selectors or JS, just animation delay/timing/fill-mode props. Note: height/width are set to 'auto' in 'to' frame and thus 'snap'  ('auto' is not accepted as animatable value!).
+*/
 @keyframes snap-in {
   from {
+    /* Hide element by making it tiny! */
     width: 0;
     height: 0;
     overflow: hidden;
-    opacity: 0;
   }
   to {
     height: auto;
     width: auto;
     overflow: auto;
-    opacity: 1;
   }
 }
 
@@ -69,11 +71,11 @@ Basic fade-in animation. Used for WC 'hydration' (undefined -> defined) transiti
   Drawer component.
 */
 mds-drawer:not(:defined) {
-  /* Drawer initial state is totally hidden - snap-in animation allows that to change so non-JS users can still see it. JS users will get the mds-drawer in defined state. */
+  /* Drawer initial state is totally hidden - snap-in animation allows that to change so non-JS users can still see it. JS users will get the mds-drawer in defined state with loading animation. */
   animation: snap-in 0.3s;
   animation-fill-mode: backwards;
   animation-delay: 400ms;
-  overflow: hidden;
+  /* Required for animation. */
   display: block;
 }
 
