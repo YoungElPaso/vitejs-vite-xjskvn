@@ -41,7 +41,7 @@ export class ExtraDetails extends LitElement {
     window.addEventListener(
       'resize',
       function () {
-        t.handleWindowResize();
+        t._handleWindowResize();
       },
       false
     );
@@ -58,7 +58,7 @@ export class ExtraDetails extends LitElement {
 
   // Calculates the heights required for animating the component on open/shut.
   // TODO: maybe mark these functions as private with underscore.
-  getHeights() {
+  _getHeights() {
     // Get the summary element to get it's height.
     let summaryElement: HTMLElement | null =
       this._details.querySelector('summary');
@@ -85,12 +85,12 @@ export class ExtraDetails extends LitElement {
 
   // Use firstUpdated to gather info about height of elements after first render.
   firstUpdated() {
-    this.getHeights();
+    this._getHeights();
   }
 
   // Listen for widow resize and adjust height variables.
-  handleWindowResize() {
-    this.getHeights();
+  _handleWindowResize() {
+    this._getHeights();
   }
 
   render() {
