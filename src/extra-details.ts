@@ -48,6 +48,9 @@ export class ExtraDetails extends LitElement {
 
     // Add an event listener to handle clicks on the details element and update properties.
     // TODO: possibly change event to details.open attribute change, it would be more explicit. Probably wouldn't need requestAnimation in that case.
+    this.addEventListener('change', function (e) {
+      console.log(e);
+    });
     this.addEventListener('click', function (e) {
       // Need to wrap in requestAnimationFrame to get the proper value of details.open after it's changed!
       requestAnimationFrame(function () {
@@ -109,14 +112,14 @@ export class ExtraDetails extends LitElement {
     return [
       css`
       :host {
-        /* TODO: make this look more like homepage menu reveals - solid border, shadow etc.*/
+        /* TODO:  use MDS variables for border etc. */
         display: block;
         overflow: hidden;
         background: white;
         padding: 0.5rem;
         margin-bottom: 1rem;
-        border-radius: 0.25rem;
-        border: 1px #bbb solid;
+        border: 2px #000 solid;
+        box-shadow: 2px 2px 2px hsla(0,0%,54.1%,.3);
         transition: height var(--animation-duration-fast);
         /* Set initial height to initHeight variable. */
         height: var(--initHeight);
