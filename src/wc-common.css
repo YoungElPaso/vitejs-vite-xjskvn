@@ -76,7 +76,8 @@ mds-mobile-adapted-content:defined {
   Extra-details component.
 */
 mds-extra-details {
-  animation: fade-in var(--animation-duration-slow);
+  display: block;
+  animation: fade-in var(--animation-duration) ease-in 400ms backwards;
 }
 mds-extra-details [slot='summary'] {
   /* Set a standard size for the summary slot. */
@@ -85,8 +86,18 @@ mds-extra-details [slot='summary'] {
   /* Ensure any block-level element is rendered inline-block instead. */
   display: inline-block;
 }
+
+mds-extra-details:not(:defined) {
+  display: block; /* TODO: is this useful? Might be! */
+}
+
 mds-extra-details:not(:defined) * {
-  /* Hide extra-details children visually for until defined. */
-  /* TODO: make sure this doesn't happen unless there's JS! */
-  visibility: hidden;
+  /* Timer animation to suggest interim 'loading' period between custom element not defined and defined. Allows lightDOM to 'load' and behave same way as shadowDOM even if there's no JS enabled. Helps avoid FOUC when JS is enabled as well. TODO: generalize this to all the other custom elements? */
+  /* animation-name: fade-in; */
+  /* animation-duration: var(--animation-duration-slow); */
+  /* animation-delay: 400ms; */
+  /* animation-fill-mode: backwards; */
+  animation: fade-in var(--animation-duration) ease-in 400ms backwards;
+  /* TODO: 
+  - did lightDOM timer technique: explain on Twitter/tell AC. */
 }
