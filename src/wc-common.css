@@ -86,13 +86,13 @@ mds-mobile-adapted-content:defined {
 @media (min-width: 420px) {
   /* If on desktop, hide all mobile-only slot content. */
   [slot='mobile-only'] {
-    display: none;
+    display: none !important;
   }
 }
 @media (max-width: 420px) {
   /* If on mobile, show only mobile-only slot content. */
   [slot='desktop'] {
-    display: none;
+    display: none !important;
   }
 }
 
