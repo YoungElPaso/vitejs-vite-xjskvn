@@ -12,8 +12,17 @@ Common variables.
 
   /* Loading animation in single line syntax: */
   --loading-animation: fade-in var(--animation-duration) ease-in 300ms backwards;
+}
 
-  /* TODO: need a way to disable all animations as per browser prefs. */
+/* Disable all animations as per user preferences. */
+@media (prefers-reduced-motion) {
+  *,
+  *:before,
+  *:after {
+    transition-property: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
 }
 
 /* 
