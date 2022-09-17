@@ -36,7 +36,7 @@ export class ExtraDetails extends LitElement {
       }
     }
 
-    // Add event listener for window resizing. TODO: can I use lit events for this or does it always need to be attached to window?
+    // Add event listener for window resizing. TODO: can I use lit events for this or does it always need to be attached to window? Use litObservable?
     let t = this;
     window.addEventListener(
       'resize',
