@@ -83,7 +83,7 @@ export class ExtraDetails extends LitElement {
     this._getHeights();
   }
 
-  // Handle click on details element.
+  // Handle click on details element - updates the isActive prop, keeping them in sync.
   _handleDetailsClick() {
     let t = this;
     // Need to wrap in requestAnimationFrame to get the proper value of details.open after it's changed!
