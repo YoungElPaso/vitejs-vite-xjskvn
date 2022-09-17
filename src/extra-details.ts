@@ -84,12 +84,15 @@ export class ExtraDetails extends LitElement {
   }
 
   // Handle click on details element - updates the isActive prop, keeping them in sync.
-  _handleDetailsClick() {
+  _handleDetailsClick(event: Event) {
+    // console.log(event);
+    event.preventDefault();
     let t = this;
-    // Need to wrap in requestAnimationFrame to get the proper value of details.open after it's changed!
-    requestAnimationFrame(function () {
-      t.isActive = t._details.open;
-    });
+    // Need to wrap in requestAnimationFrame to get the proper value of details.open after it's changed! TODO: should this be necessary??? Maybe details default event should be intercepted and property set and then allow prop to flow down? would that help? - Yes! this works and I guess is cleaner...
+    // requestAnimationFrame(function () {
+
+    t.isActive = !t.isActive;
+    // });
   }
 
   render() {
