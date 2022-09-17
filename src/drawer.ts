@@ -77,8 +77,6 @@ export class DrawerElement extends LitElement {
         /* Basic padding for contents. */
         --drawer-padding: 0.5rem;
       }
-      
-      /* TODO: For active facet details el. allow an optional prop to set an 'active-child' selector string - so can have differing implementations per element! */
 
       /* Open/close button for drawer. */
       button {
