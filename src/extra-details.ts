@@ -45,18 +45,6 @@ export class ExtraDetails extends LitElement {
       },
       false
     );
-
-    // Add an event listener to handle clicks on the details element and update properties.
-    // TODO: possibly change event to details.open attribute change, it would be more explicit. Probably wouldn't need requestAnimation in that case. Might need mutationObserver - that might be more trouble than worth! Look into later! Maybe add the listener on the details element directly for more clarity?
-    this.addEventListener('change', function (e) {
-      console.log(e);
-    });
-    this.addEventListener('click', function (e) {
-      // Need to wrap in requestAnimationFrame to get the proper value of details.open after it's changed!
-      requestAnimationFrame(function () {
-        t.isActive = t._details.open;
-      });
-    });
   }
 
   // Calculates the heights required for animating the component on open/shut.
@@ -95,9 +83,18 @@ export class ExtraDetails extends LitElement {
     this._getHeights();
   }
 
+  // Handle click on details element.
+  _handleDetailsClick() {
+    let t = this;
+    // Need to wrap in requestAnimationFrame to get the proper value of details.open after it's changed!
+    requestAnimationFrame(function () {
+      t.isActive = t._details.open;
+    });
+  }
+
   render() {
     return html`
-    <details ?open=${this.isActive}>
+    <details @click=${this._handleDetailsClick} ?open=${this.isActive}>
       <summary>
         <slot name="summary"></slot>
       </summary>
