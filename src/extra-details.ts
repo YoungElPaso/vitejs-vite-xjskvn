@@ -83,22 +83,19 @@ export class ExtraDetails extends LitElement {
     this._getHeights();
   }
 
-  // Handle click on details element - updates the isActive prop, keeping them in sync.
+  // Handle click on details element - updates the isActive prop.
   _handleDetailsClick(event: Event) {
-    // console.log(event);
+    // Prevent default details summary click event so details.open is set explicitly by isActive prop.
     event.preventDefault();
-    let t = this;
-    // Need to wrap in requestAnimationFrame to get the proper value of details.open after it's changed! TODO: should this be necessary??? Maybe details default event should be intercepted and property set and then allow prop to flow down? would that help? - Yes! this works and I guess is cleaner...
-    // requestAnimationFrame(function () {
 
-    t.isActive = !t.isActive;
-    // });
+    // Toggle this.isActive.
+    this.isActive = !this.isActive;
   }
 
   render() {
     return html`
-    <details @click=${this._handleDetailsClick} ?open=${this.isActive}>
-      <summary>
+    <details ?open=${this.isActive}>
+      <summary @click=${this._handleDetailsClick}>
         <slot name="summary"></slot>
       </summary>
       <div>
