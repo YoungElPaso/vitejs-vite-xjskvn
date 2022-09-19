@@ -7,7 +7,9 @@
   "exports": {
     ".": "./dist/mds-wcs.js"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -16,7 +18,9 @@
   "devDependencies": {
     "@types/css-modules": "^1.0.2",
     "lit": "^2.2.8",
+    "rollup-plugin-copy": "^3.4.0",
     "typescript": "^4.7.4",
-    "vite": "^3.0.7"
+    "vite": "^3.0.7",
+    "vite-plugin-static-copy": "^0.9.0"
   }
 }

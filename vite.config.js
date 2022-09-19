@@ -1,5 +1,7 @@
 import { defineConfig } from 'vite';
 
+import { viteStaticCopy } from 'vite-plugin-static-copy';
+
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
@@ -15,9 +17,12 @@ export default defineConfig({
     rollupOptions: {
       // Lit marked as external - i.e. a peer dependency. Reduces bundle size if external by 22Kb but adds complexity - required to be loaded separately. TODO: Consider benefits of NOT bundling Lit directly later.
       // external: /^lit/,
-      // TODO: use this to copy wc-common.css into dist:
-      // https://www.npmjs.com/package/rollup-plugin-copy
     },
     outDir: 'dist',
   },
+  plugins: [
+    viteStaticCopy({
+      targets: [{ src: 'src/wc-common.css', dest: './' }],
+    }),
+  ],
 });
